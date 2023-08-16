@@ -27,6 +27,7 @@ public class SpringCoreConfiguration {
         liquibase.setChangeLog("classpath:db/changelog/changelog-master.xml");
         liquibase.setShouldRun(true);
         liquibase.setDataSource(dataSource);
+        liquibase.setDefaultSchema("public");
         return liquibase;
     }
 }
