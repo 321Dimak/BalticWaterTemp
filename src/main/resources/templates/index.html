@@ -1,17 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="BWT demo version">
     <meta name="developer" content="Dmitrijs Kozlovs">
     <title>Baltic Water Temperature</title>
+    <link rel="stylesheet" href="../static/homepage.css">
 </head>
 <body>
 
-<h3>Baltic Water Temperature</h3>
+<h3 class="title-heading">Baltic Water Temperature Finder</h3>
 
-<a href="/createAccount">Create Account</a> <br>
-<a href="/login">Login</a> <br>
+<div class="buttons-container">
+    <a href="/createAccount" class="create-account-link">Create Account</a>
+    <a href="/login" class="create-account-link">Login</a>
+</div>
+
+
+<!-- Add a button to fetch API data -->
+<button id="fetchDataButton">Fetch API Data</button>
+<div id="apiDataContainer"></div>
+
+<!-- Add the JavaScript code here -->
+<script>
+    const fetchDataButton = document.getElementById('fetchDataButton');
+    const apiDataContainer = document.getElementById('apiDataContainer');
+
+    fetchDataButton.addEventListener('click', () => {
+        fetchApiData();
+    });
+
+    function fetchApiData() {
+        fetch('/fetch-api-data')
+            .then(response => response.json())
+            .then(data => {
+                apiDataContainer.innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error fetching API data:', error);
+            });
+    }
+</script>
 
 </body>
 </html>
