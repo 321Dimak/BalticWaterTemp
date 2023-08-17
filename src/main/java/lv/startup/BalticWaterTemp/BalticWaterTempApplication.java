@@ -1,5 +1,6 @@
 package lv.startup.BalticWaterTemp;
 
+import lv.startup.BalticWaterTemp.web_ui.config.SpringWebConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BalticWaterTempApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BalticWaterTempApplication.class, args);
+		SpringApplication.run(SpringWebConfiguration.class);
 	}
 
 }
