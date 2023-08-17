@@ -1,21 +1,19 @@
 package lv.startup.BalticWaterTemp.core.security;
-import java.util.Collections;
 
+import java.util.Collections;
 import lv.startup.BalticWaterTemp.core.database.JpaUserRepository;
 import lv.startup.BalticWaterTemp.core.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+    @Autowired
     private JpaUserRepository JpaUserRepository;
-
-    public CustomUserDetailsService(JpaUserRepository userRepository) {
-        this.JpaUserRepository = userRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -25,10 +23,9 @@ public class CustomUserDetailsService implements UserDetailsService {
             return new org.springframework.security.core.userdetails.User(user.getEmail(),
                     user.getPassword(),
                     Collections.emptyList());
-        }else{
+        } else {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
     }
 
 }
-
