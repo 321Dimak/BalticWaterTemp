@@ -7,16 +7,15 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ApiService {
 
-    private final String API_BASE_URL = "https://data.gov.lv/dati/api/3/action/datastore_search_sql";
+    private final String API_BASE_URL = "https://data.gov.lv/dati/lv/api/3/action";
+
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public ResponseEntity<String> fetchDataFromApi(String fromDate, String toDate, String station) {
-        String sqlQuery = "SELECT * FROM \"a90de53b-e8b6-4cda-97c4-ecb86fbafc2d\" " +
-                "WHERE \"a90de53b-e8b6-4cda-97c4-ecb86fbafc2d\".\"ABBREVIATION\" = 'WTEMD' " +
-                "AND \"a90de53b-e8b6-4cda-97c4-ecb86fbafc2d\".\"STATION_ID\" = '"+ station +"' " +
-                "AND \"a90de53b-e8b6-4cda-97c4-ecb86fbafc2d\".\"DATETIME\" BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+    public ResponseEntity<String> fetchDataFromApi() {
+        String resource_id = "a90de53b-e8b6-4cda-97c4-ecb86fbafc2d";
+        int limit = 5;
 
-        String url = API_BASE_URL + "?sql=" + sqlQuery;
+        String url = API_BASE_URL + "/datastore_search?resource_id=" + resource_id + "&limit=" + limit;
         return restTemplate.getForEntity(url, String.class);
     }
 }
