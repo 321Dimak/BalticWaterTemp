@@ -1,4 +1,4 @@
-package lv.startup.BalticWaterTemp.core.domain;
+package lv.startup.BalticWaterTemp.core.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -5,22 +5,21 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
 
-    <changeSet author="Dmitrijs Kozlovs" id="1">
-        <createTable tableName="users" >
-            <column name="email" type="VARCHAR(255)"/>
+    <changeSet author="Dmitrijs Kozlovs" id="7">
+        <createTable tableName="location">
+            <column name="id" type="BIGINT"/>
             <column name="name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="password" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="temperature" type="DOUBLE"/>
+            <column name="level" type="DOUBLE"/>
         </createTable>
         <rollback>
-            <dropTable tableName="users"
+            <dropTable tableName="location"
                        cascadeConstraints="true"/>
         </rollback>
     </changeSet>
-    <changeSet id="2" author="Dmitrijs Kozlovs">
-        <addPrimaryKey tableName="users" columnNames="email" constraintName="PK_users"/>
+    <changeSet id="8" author="Dmitrijs Kozlovs">
+        <addPrimaryKey columnNames="id" constraintName="PK_location" tableName="location"/>
     </changeSet>
 </databaseChangeLog>
