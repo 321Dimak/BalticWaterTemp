@@ -1,9 +1,7 @@
 package lv.startup.BalticWaterTemp.service.impl;
 
 import lv.startup.BalticWaterTemp.dto.UserDto;
-import lv.startup.BalticWaterTemp.entity.Role;
 import lv.startup.BalticWaterTemp.entity.User;
-import lv.startup.BalticWaterTemp.repository.RoleRepository;
 import lv.startup.BalticWaterTemp.repository.UserRepository;
 import lv.startup.BalticWaterTemp.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,14 +15,11 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
-    private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository,
-                           RoleRepository roleRepository,
                            PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -37,11 +32,6 @@ public class UserServiceImpl implements UserService {
         //encrypt the password once we integrate spring security
         //user.setPassword(userDto.getPassword());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        Role role = roleRepository.findByName("ROLE_ADMIN");
-        if(role == null){
-            role = checkRoleExist();
-        }
-        user.setRoles(Arrays.asList(role));
         userRepository.save(user);
     }
 
@@ -64,11 +54,5 @@ public class UserServiceImpl implements UserService {
         userDto.setLastName(name[1]);
         userDto.setEmail(user.getEmail());
         return userDto;
-    }
-
-    private Role checkRoleExist() {
-        Role role = new Role();
-        role.setName("ROLE_ADMIN");
-        return roleRepository.save(role);
     }
 }

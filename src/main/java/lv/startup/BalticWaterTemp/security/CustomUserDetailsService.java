@@ -1,6 +1,5 @@
 package lv.startup.BalticWaterTemp.security;
-
-import lv.startup.BalticWaterTemp.entity.Role;
+import java.util.Collections;
 import lv.startup.BalticWaterTemp.entity.User;
 import lv.startup.BalticWaterTemp.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,17 +28,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user != null) {
             return new org.springframework.security.core.userdetails.User(user.getEmail(),
                     user.getPassword(),
-                    mapRolesToAuthorities(user.getRoles()));
+                    Collections.emptyList());
         }else{
             throw new UsernameNotFoundException("Invalid username or password.");
         }
     }
 
-    private Collection < ? extends GrantedAuthority> mapRolesToAuthorities(Collection <Role> roles) {
-        Collection < ? extends GrantedAuthority> mapRoles = roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
-        return mapRoles;
-    }
 }
 
