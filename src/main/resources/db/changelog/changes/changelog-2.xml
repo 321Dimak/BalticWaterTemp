@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <changeSet author="Dmitrijs Kozlovs" id="3">
+        <createTable tableName="level_history">
+            <column name="location_id" type="BIGINT"/>
+            <column name="1d_ego" type="DOUBLE"/>
+            <column name="2d_ego" type="DOUBLE"/>
+            <column name="3d_ego" type="DOUBLE"/>
+            <column name="4d_ego" type="DOUBLE"/>
+            <column name="5d_ego" type="DOUBLE"/>
+            <column name="6d_ego" type="DOUBLE"/>
+            <column name="7d_ego" type="DOUBLE"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="level_history"
+                       cascadeConstraints="true"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="4" author="Dmitrijs Kozlovs">
+        <addPrimaryKey tableName="level_history" columnNames="location_id" constraintName="PK_level_history"/>
+    </changeSet>
+</databaseChangeLog>
