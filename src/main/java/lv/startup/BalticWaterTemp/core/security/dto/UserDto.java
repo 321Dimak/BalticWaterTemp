@@ -1,4 +1,4 @@
-package lv.startup.BalticWaterTemp.dto;
+package lv.startup.BalticWaterTemp.core.security.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -13,11 +13,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserDto
 {
-    private Long id;
     @NotEmpty
-    private String firstName;
-    @NotEmpty
-    private String lastName;
+    private String name;
     @NotEmpty(message = "Email should not be empty")
     @Email
     private String email;

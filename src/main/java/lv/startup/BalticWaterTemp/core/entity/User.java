@@ -1,26 +1,31 @@
 package lv.startup.BalticWaterTemp.core.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
-@Table(name = "users")
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class User {
+@Entity
+@Table(name="users")
+public class User
+{
+
+    @Column(nullable=false)
+    private String name;
 
     @Id
-    @Column(name = "email")
+    @Column(nullable=false, unique=true)
     private String email;
-    @Column(name = "name", nullable = false)
-    private String username;
-    @Column(name = "password", nullable = false)
+
+    @Column(nullable=false)
     private String password;
 
 }

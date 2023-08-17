@@ -1,29 +1,25 @@
-package lv.startup.BalticWaterTemp.security;
+package lv.startup.BalticWaterTemp.core.security;
 import java.util.Collections;
-import lv.startup.BalticWaterTemp.entity.User;
-import lv.startup.BalticWaterTemp.repository.UserRepository;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import lv.startup.BalticWaterTemp.core.database.JpaUserRepository;
+import lv.startup.BalticWaterTemp.core.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.stream.Collectors;
-
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private JpaUserRepository JpaUserRepository;
 
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public CustomUserDetailsService(JpaUserRepository userRepository) {
+        this.JpaUserRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
+        User user = JpaUserRepository.findByEmail(email);
 
         if (user != null) {
             return new org.springframework.security.core.userdetails.User(user.getEmail(),

@@ -1,9 +1,9 @@
-package lv.startup.BalticWaterTemp.controller;
+package lv.startup.BalticWaterTemp.web_ui.controllers;
 
-import lv.startup.BalticWaterTemp.dto.UserDto;
-import lv.startup.BalticWaterTemp.entity.User;
-import lv.startup.BalticWaterTemp.service.UserService;
+import lv.startup.BalticWaterTemp.core.entity.User;
+import lv.startup.BalticWaterTemp.core.security.dto.UserDto;
 import jakarta.validation.Valid;
+import lv.startup.BalticWaterTemp.core.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
