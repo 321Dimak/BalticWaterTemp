@@ -22,11 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(UserDto userDto) {
-        User user = new User();
-        user.setName(userDto.getName());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        JpaUserRepository.save(user);
+        JpaUserRepository.save(new User(userDto.getName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword())));
     }
 
     @Override
