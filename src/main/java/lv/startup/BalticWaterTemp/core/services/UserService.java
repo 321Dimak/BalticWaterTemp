@@ -1,7 +1,7 @@
-package lv.startup.BalticWaterTemp.service;
+package lv.startup.BalticWaterTemp.core.services;
 
-import lv.startup.BalticWaterTemp.dto.UserDto;
-import lv.startup.BalticWaterTemp.entity.User;
+import lv.startup.BalticWaterTemp.core.entity.User;
+import lv.startup.BalticWaterTemp.core.security.dto.UserDto;
 
 import java.util.List;
 
