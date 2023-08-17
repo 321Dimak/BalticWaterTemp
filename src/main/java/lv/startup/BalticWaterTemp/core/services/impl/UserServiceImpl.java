@@ -1,24 +1,21 @@
 package lv.startup.BalticWaterTemp.core.services.impl;
 
+import lombok.RequiredArgsConstructor;
 import lv.startup.BalticWaterTemp.core.database.JpaUserRepository;
 import lv.startup.BalticWaterTemp.core.security.dto.UserDto;
 import lv.startup.BalticWaterTemp.core.entity.User;
 import lv.startup.BalticWaterTemp.core.services.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-
-    @Autowired
-    private JpaUserRepository JpaUserRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final JpaUserRepository JpaUserRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void saveUser(UserDto userDto) {
