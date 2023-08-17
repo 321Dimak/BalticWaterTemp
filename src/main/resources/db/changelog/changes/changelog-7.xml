@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <changeSet id="12" author="Dmitrijs Kozlovs">
+        <addForeignKeyConstraint baseColumnNames="user_email" baseTableName="favorite_location"
+                                 constraintName="FK_favorite_location_user_email" referencedColumnNames="email"
+                                 referencedTableName="users"/>
+    </changeSet>
+    <changeSet id="13" author="Dmitrijs Kozlovs">
+        <addForeignKeyConstraint baseColumnNames="location_id" baseTableName="favorite_location"
+                                 constraintName="FK_favorite_location_location_id" referencedColumnNames="id"
+                                 referencedTableName="location"/>
+    </changeSet>
+    <changeSet id="14" author="Dmitrijs Kozlovs">
+        <addForeignKeyConstraint baseColumnNames="user_email" baseTableName="notification"
+                                 constraintName="FK_notification_user_email" referencedColumnNames="email"
+                                 referencedTableName="users"/>
+    </changeSet>
+    <changeSet id="15" author="Dmitrijs Kozlovs">
+        <addForeignKeyConstraint baseColumnNames="location_id" baseTableName="notification"
+                                 constraintName="FK_notification_location_id" referencedColumnNames="id"
+                                 referencedTableName="location"/>
+    </changeSet>
+    <changeSet id="16" author="Dmitrijs Kozlovs">
+        <addForeignKeyConstraint baseColumnNames="location_id" baseTableName="level_history"
+                                 constraintName="FK_level_history_location" referencedColumnNames="id"
+                                 referencedTableName="location"/>
+    </changeSet>
+    <changeSet id="17" author="Dmitrijs Kozlovs">
+        <addForeignKeyConstraint baseColumnNames="location_id" baseTableName="temp_history"
+                                 constraintName="FK_temp_history_location" referencedColumnNames="id"
+                                 referencedTableName="location"/>
+    </changeSet>
+
+</databaseChangeLog>

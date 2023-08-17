@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages = "lv.startup.BalticWaterTemp.core")
 @PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
-@EntityScan(basePackages = "lv.startup.BalticWaterTemp.core.domain")
+@EntityScan(basePackages = "lv.startup.BalticWaterTemp.core.entity")
 @EnableJpaRepositories(value = "lv.startup.BalticWaterTemp.core.database")
 public class SpringCoreConfiguration {
 

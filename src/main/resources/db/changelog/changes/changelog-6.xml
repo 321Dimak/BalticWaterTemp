@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <changeSet author="Dmitrijs Kozlovs" id="10">
+        <createTable tableName="notification">
+            <column name="user_email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="temperature" type="DOUBLE"/>
+            <column name="t_lower_alert" type="BOOLEAN"/>
+            <column name="t_higher_alert" type="BOOLEAN"/>
+            <column name="level" type="DOUBLE"/>
+            <column name="l_lower_alert" type="BOOLEAN"/>
+            <column name="l_higher_alert" type="BOOLEAN"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="notification"
+                       cascadeConstraints="true"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="11" author="Dmitrijs Kozlovs">
+        <addPrimaryKey columnNames="user_email" constraintName="PK_notification" tableName="notification"/>
+    </changeSet>
+</databaseChangeLog>
