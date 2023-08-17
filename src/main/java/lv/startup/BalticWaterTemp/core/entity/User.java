@@ -18,14 +18,14 @@ import java.util.List;
 public class User
 {
 
-    @Column(nullable=false)
+    @Column(name="name")
     private String name;
 
     @Id
-    @Column(nullable=false, unique=true)
+    @Column(name="email")
     private String email;
 
-    @Column(nullable=false)
+    @Column(name="password")
     private String password;
 
 }
