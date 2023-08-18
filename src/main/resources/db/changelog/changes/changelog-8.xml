@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <changeSet id="18" author="Dmitrijs Kozlovs">
+        <dropForeignKeyConstraint baseTableName="favorite_location" constraintName="FK_favorite_location_location_id"/>
+        <dropForeignKeyConstraint baseTableName="notification" constraintName="FK_notification_location_id"/>
+        <dropForeignKeyConstraint baseTableName="level_history" constraintName="FK_level_history_location"/>
+        <dropForeignKeyConstraint baseTableName="temp_history" constraintName="FK_temp_history_location"/>
+
+    </changeSet>
+
+</databaseChangeLog>
