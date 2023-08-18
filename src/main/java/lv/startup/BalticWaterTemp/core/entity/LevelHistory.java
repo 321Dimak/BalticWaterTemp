@@ -1,9 +1,6 @@
 package lv.startup.BalticWaterTemp.core.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,4 +31,9 @@ public class LevelHistory {
     private double sixDayAgo;
     @Column(name = "7d_ago")
     private double sevenDayAgo;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "location_id")
+    private Location location;
 }
