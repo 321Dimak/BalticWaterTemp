@@ -1,9 +1,6 @@
 package lv.startup.BalticWaterTemp.core.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,4 +31,11 @@ public class Notification {
     private boolean levelLowerAlert;
     @Column(name = "l_higher_alert")
     private boolean levelHigherAlert;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Location location;
+    @ManyToOne
+    @JoinColumn(name = "user_email", referencedColumnName = "email", insertable = false, updatable = false)
+    private User user;
 }

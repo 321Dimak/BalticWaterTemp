@@ -1,13 +1,12 @@
 package lv.startup.BalticWaterTemp.core.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,4 +25,13 @@ public class Location {
     private double temperature;
     @Column(name = "level")
     private double level;
+
+    @OneToOne(mappedBy = "location")
+    private LevelHistory levelHistory;
+    @OneToOne(mappedBy = "location")
+    private TempHistory tempHistory;
+    @OneToMany(mappedBy = "location")
+    private List<Notification> notifications;
+    @OneToMany(mappedBy = "location")
+    private List<FavoriteLocation> favoriteLocations;
 }
