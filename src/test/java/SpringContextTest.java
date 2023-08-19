@@ -1,3 +1,4 @@
+import lombok.RequiredArgsConstructor;
 import lv.startup.BalticWaterTemp.config.SpringCoreConfiguration;
 import org.apache.catalina.core.ApplicationContext;
 import org.junit.jupiter.api.Disabled;
