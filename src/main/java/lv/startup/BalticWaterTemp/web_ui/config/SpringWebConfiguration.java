@@ -16,9 +16,10 @@ public class SpringWebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resource/")
-                .addResourceLocations("/resource/");
+        registry.addResourceHandler("/static/**")  // Correct path for static resources
+                .addResourceLocations("classpath:/static/");  // Correct path for static resources
     }
+
 
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
