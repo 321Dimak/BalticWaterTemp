@@ -31,6 +31,7 @@ public class SpringSecurity {
                         authorize
                                 .requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/index").permitAll()  // "all" page before login
+                                .requestMatchers("/").permitAll()
                                 .requestMatchers("/user_index").authenticated()
                                 .anyRequest().authenticated()
                 )
