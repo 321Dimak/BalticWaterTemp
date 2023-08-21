@@ -33,6 +33,8 @@ public class SpringSecurity {
                                 .requestMatchers("/index").permitAll()  // "all" page before login
                                 .requestMatchers("/").permitAll()
                                 .requestMatchers("/user_index").authenticated()
+                                .requestMatchers("/static/**").permitAll()
+                                .requestMatchers("/fetch-api-data").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(
