@@ -47,13 +47,16 @@
             display: flex;
             align-items: center;
             margin-bottom: 10px;
+            justify-content: space-between;
         }
 
         label {
             font-weight: bold;
             margin-right: 10px;
         }
-
+        .inputs {
+            justify-content: left;
+        }
         /* Style for date inputs with labels */
         .date-input {
             border: 1px solid #ccc;
@@ -65,8 +68,17 @@
             display: inline-block;
             vertical-align: middle;
         }
+        #stations {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 8px;
+            font-size: 14px;
+            background-color: white;
+            display: inline-block;
+            vertical-align: middle;
+            width: 100%;
+        }
 
-        /* Add styles for the apiDataContainer */
         #apiDataContainer {
             margin-top: 20px;
         }
@@ -82,7 +94,7 @@
 </div>
 
 
-
+<div class="inputs">
 <div class="input-label">
     <label for="fromDate">From:</label>
     <input type="date" id="fromDate" class="date-input" placeholder="From Date">
@@ -92,15 +104,90 @@
     <label for="toDate">To:</label>
     <input type="date" id="toDate" class="date-input" placeholder="To Date">
 </div>
+<div  class="input-label">
+    <label for="stations">Stations: </label>
+    <select id="stations" name="stations">
+        <option value="HD073810">Rīga</option>
+        <option value="HD073352">Aiviekstes HES</option>
+        <option value="HD073552">Baloži</option>
+        <option value="HD073482">Bauska</option>
+        <option value="HD073548">Bramberģe</option>
+        <option value="HD073720">Brūnuļi</option>
+        <option value="HD073901">Burtnieki</option>
+        <option value="HD073813">Carnikava</option>
+        <option value="HD073709">Cīrava</option>
+        <option value="HD073141">Daugavpils</option>
+        <option value="HD073682">Dūkupji</option>
+        <option value="HD073380">Griškāni</option>
+        <option value="HD073151">Jēkabpils</option>
+        <option value="HD073801">Jelgava</option>
+        <option value="HD073802">Kalnciems</option>
+        <option value="HD073809">Ķīšezers</option>
+        <option value="HD073137">Krāslava</option>
+        <option value="HD073613">Kuldīga</option>
+        <option value="HD073334">Kūlenieki</option>
+        <option value="HD073009">Lagaste</option>
+        <option value="HD073079">Lejasciems</option>
+        <option value="HD073721">Lenderņa</option>
+        <option value="HD073400">Lielpeči</option>
+        <option value="HD073529">Lielveisi</option>
+        <option value="HD073366">Litene</option>
+        <option value="HD073345">Lubāna</option>
+        <option value="HD072971">Ludza</option>
+        <option value="HD073003">Mazsalaca</option>
+        <option value="HD073098">Melturi</option>
+        <option value="HD073422">Mežotne</option>
+        <option value="HD073025">Oleri</option>
+        <option value="HD073641">Pakuļu HES</option>
+        <option value="HD073135">Piedruja</option>
+        <option value="HD073904">Pļaviņas</option>
+        <option value="HD073653">Renda</option>
+        <option value="HD073580">Rojupe</option>
+        <option value="HD073062">Sigulda</option>
+        <option value="HD073322">Sīļi</option>
+        <option value="HD073803">Sloka</option>
+        <option value="HD073424">Staļģene</option>
+        <option value="HD073461">Sudrabkalni</option>
+        <option value="HD073075">Taurene</option>
+        <option value="HD073659">Tērande</option>
+        <option value="HD073144">Vaikuļāni</option>
+        <option value="HD073605">Vārdava</option>
+        <option value="HD073044">Velēna</option>
+        <option value="HD073616">Vendzava</option>
+        <option value="HD073582">Vičaki</option>
+        <option value="HD073411">Zaķi</option>
+        <option value="HD073071">Zosēni</option>
+    </select>
 
+
+</div>
+</div>
 <button id="fetchDataButton">Find Temperature</button>
+<div style="position: relative; height:40vh; width:90vw"><canvas id="temperatureChart"></canvas></div>
+
 <div id="apiDataContainer"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     const fetchDataButton = document.getElementById('fetchDataButton');
     const apiDataContainer = document.getElementById('apiDataContainer');
     const fromDateInput = document.getElementById('fromDate');
     const toDateInput = document.getElementById('toDate');
+    const stationsDropdown = document.getElementById('stations');
+    window.addEventListener('load', () => {
+        // Get today's date and format it as "YYYY-MM-DD"
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = ('0' + (today.getMonth() + 1)).slice(-2);
+        const day = ('0' + today.getDate()).slice(-2);
+        const formattedToday = `${year}-${month}-${day}`;
+        const formattedYesterday = `${year}-${month}-${(day-1)}`;
+
+        // Set the default date for fromDateInput and toDateInput
+        fromDateInput.value = formattedYesterday;
+        toDateInput.value = formattedToday;
+    });
+
 
     fetchDataButton.addEventListener('click', () => {
         fetchApiData();
@@ -109,21 +196,60 @@
     function fetchApiData() {
         const fromDate = fromDateInput.value;
         const toDate = toDateInput.value;
-        const formattedFromDate = formatDate(fromDate);
-        const formattedToDate = formatDate(toDate);
-
-        fetch(`/fetch-api-data?fromDate=${formattedFromDate}&toDate=${formattedToDate}`)
+        const formattedFromDate = formatDate(fromDate, 'api');
+        const formattedToDate = formatDate(toDate, 'api');
+        const selectedStation = stationsDropdown.value;
+        const dates = [];
+        const temperatures = [];
+        console.log(selectedStation);
+        fetch(`/fetch-api-data?station=${selectedStation}&fromDate=${formattedFromDate}&toDate=${formattedToDate}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
+                data.result.records.forEach(record => {
+                    dates.push(formatDate(record.DATETIME, 'display'));
+                    temperatures.push(parseFloat(record.VALUE));
+                });
+
                 displayApiData(data);
+                createTemperatureChart(dates, temperatures);
+
+
+
             })
             .catch(error => {
                 console.error('Error fetching API data:', error);
             });
     }
+    function createTemperatureChart(dates, temperatures) {
+        const temperatureChartContext = document.getElementById('temperatureChart').getContext('2d');
 
-    function formatDate(dateString) {
+        temperatureChart = new Chart(temperatureChartContext, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Temperature (°C)',
+                    data: temperatures,
+                    borderColor: '#6a1b9a',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+        return temperatureChart;
+    }
+
+
+    function formatDate(dateString, format) {
         const date = new Date(dateString);
         const year = date.getFullYear();
         const month = ('0' + (date.getMonth() + 1)).slice(-2);
@@ -131,17 +257,25 @@
         const hours = ('0' + date.getHours()).slice(-2);
         const minutes = ('0' + date.getMinutes()).slice(-2);
         const seconds = ('0' + date.getSeconds()).slice(-2);
-        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+
+        if (format === 'api') {
+            return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+        } else if (format === 'display') {
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        } else {
+            return ''; // Invalid format
+        }
     }
 
     function displayApiData(data) {
         apiDataContainer.innerHTML = ''; // Clear previous content
-
+        const selectedStationName = stationsDropdown.options[stationsDropdown.selectedIndex].text;
         const table = document.createElement('table');
         table.classList.add('data-table');
 
+        // Create the header row with all the column headers
         const headerRow = document.createElement('tr');
-        const headers = ['Date and Time', 'Station ID', 'Abbreviation', 'Value'];
+        const headers = ['Date and Time', 'Station ID', 'Station Name','Temperature (C)'];
         headers.forEach(headerText => {
             const headerCell = document.createElement('th');
             headerCell.textContent = headerText;
@@ -149,21 +283,26 @@
         });
         table.appendChild(headerRow);
 
+        // Iterate through the records and create rows
         data.result.records.forEach(record => {
             const row = document.createElement('tr');
 
+            // Date and Time cell
             const datetimeCell = document.createElement('td');
-            datetimeCell.textContent = record.DATETIME;
+            datetimeCell.textContent = formatDate(record.DATETIME, 'display');
             row.appendChild(datetimeCell);
 
-            const stationCell = document.createElement('td');
-            stationCell.textContent = record.STATION_ID;
-            row.appendChild(stationCell);
+            // Station ID cell
+            const stationIdCell = document.createElement('td');
+            stationIdCell.textContent = record.STATION_ID;
+            row.appendChild(stationIdCell);
 
-            const abbreviationCell = document.createElement('td');
-            abbreviationCell.textContent = record.ABBREVIATION;
-            row.appendChild(abbreviationCell);
+            // Station Name cell (using the selectedStation value)
+            const stationNameCell = document.createElement('td');
+            stationNameCell.textContent = selectedStationName;
+            row.appendChild(stationNameCell);
 
+            // Value cell
             const valueCell = document.createElement('td');
             valueCell.textContent = record.VALUE;
             row.appendChild(valueCell);
@@ -173,6 +312,7 @@
 
         apiDataContainer.appendChild(table);
     }
+
 </script>
 
 

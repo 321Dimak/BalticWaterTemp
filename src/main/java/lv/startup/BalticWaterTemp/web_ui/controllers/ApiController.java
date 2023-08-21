@@ -16,9 +16,9 @@ public class ApiController {
     private ApiService apiService;
 
     @GetMapping("/fetch-api-data")
-    public ResponseEntity<String> fetchApiData(@RequestParam("fromDate") String fromDate, @RequestParam("toDate") String toDate) {
+    public ResponseEntity<String> fetchApiData(@RequestParam("fromDate") String fromDate, @RequestParam("toDate") String toDate, @RequestParam("station") String station) {
         // Pass fromDate and toDate to the ApiService method
-        ResponseEntity<String> apiResponse = apiService.fetchDataFromApi(fromDate, toDate);
+        ResponseEntity<String> apiResponse = apiService.fetchDataFromApi(fromDate, toDate, station);
         return apiResponse;
     }
 }
