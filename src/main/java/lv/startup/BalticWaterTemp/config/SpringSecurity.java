@@ -28,9 +28,13 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/index").permitAll()//"all" page before login
-                ).formLogin(
+                        authorize
+                                .requestMatchers("/register/**").permitAll()
+                                .requestMatchers("/index").permitAll()  // "all" page before login
+                                .requestMatchers("/user_index").authenticated()
+                                .anyRequest().authenticated()
+                )
+                .formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
@@ -43,7 +47,6 @@ public class SpringSecurity {
                 );
         return http.build();
     }
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
