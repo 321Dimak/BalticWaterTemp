@@ -26,4 +26,10 @@ public class User {
     private List<Notification> notifications;
     @OneToMany(mappedBy = "user")
     private List<FavoriteLocation> favoriteLocations;
+
+    public User(String email, String username, String password) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
 }

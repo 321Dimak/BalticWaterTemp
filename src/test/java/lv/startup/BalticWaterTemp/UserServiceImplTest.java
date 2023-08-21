@@ -1,6 +1,6 @@
 package lv.startup.BalticWaterTemp;
 
-import lv.startup.BalticWaterTemp.core.database.JpaUserRepository;
+import lv.startup.BalticWaterTemp.core.database.UserRepository;
 import lv.startup.BalticWaterTemp.core.entity.User;
 import lv.startup.BalticWaterTemp.core.security.dto.UserDto;
 import lv.startup.BalticWaterTemp.core.services.impl.UserServiceImpl;
@@ -11,10 +11,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class UserServiceImplTest {
 
@@ -22,7 +21,7 @@ public class UserServiceImplTest {
     private UserServiceImpl userService;
 
     @Mock
-    private JpaUserRepository userRepository;
+    private UserRepository userRepository;
 
     @Mock
     private PasswordEncoder passwordEncoder;

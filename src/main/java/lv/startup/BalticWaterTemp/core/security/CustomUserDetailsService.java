@@ -1,7 +1,7 @@
 package lv.startup.BalticWaterTemp.core.security;
 
 import java.util.Collections;
-import lv.startup.BalticWaterTemp.core.database.JpaUserRepository;
+import lv.startup.BalticWaterTemp.core.database.UserRepository;
 import lv.startup.BalticWaterTemp.core.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private JpaUserRepository JpaUserRepository;
+    private UserRepository JpaUserRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

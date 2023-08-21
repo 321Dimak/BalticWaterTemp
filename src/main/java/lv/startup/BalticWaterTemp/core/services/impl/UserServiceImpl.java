@@ -1,6 +1,6 @@
 package lv.startup.BalticWaterTemp.core.services.impl;
 
-import lv.startup.BalticWaterTemp.core.database.JpaUserRepository;
+import lv.startup.BalticWaterTemp.core.database.UserRepository;
 import lv.startup.BalticWaterTemp.core.security.dto.UserDto;
 import lv.startup.BalticWaterTemp.core.entity.User;
 import lv.startup.BalticWaterTemp.core.services.UserService;
@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private JpaUserRepository JpaUserRepository;
+    private UserRepository JpaUserRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
     public void saveUser(UserDto userDto) {
-        JpaUserRepository.save(new User(userDto.getName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword())));
+        JpaUserRepository.save(new User(userDto.getEmail(), userDto.getName(), passwordEncoder.encode(userDto.getPassword())));
     }
 
     @Override
@@ -38,6 +38,6 @@ public class UserServiceImpl implements UserService {
     }
 
     private UserDto convertEntityToDto(User user) {
-        return new UserDto(user.getName(), user.getEmail(), null);
+        return new UserDto(user.getEmail(), user.getUsername(), null);
     }
 }
