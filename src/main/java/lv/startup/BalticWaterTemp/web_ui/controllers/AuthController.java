@@ -19,10 +19,7 @@ public class AuthController {
 
     @Autowired
     private UserService userService;
-    @GetMapping("/")
-    public String redirectToIndex() {
-        return "redirect:/index";
-    }
+
     @GetMapping("index")
     public String home(){
         return "index";
