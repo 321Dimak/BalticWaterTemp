@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
             helper.setText(htmlMsg, true);  // set to true to enable HTML formatting
             helper.setTo(userDto.getEmail());
             helper.setSubject("Welcome to BalticWaterTemp");
-            helper.setFrom("noreply@balticwatertemp.com");  // replace with your sending email
+            helper.setFrom("balticwatertemperature@gmail.com");  // replace with your sending email
             mailSender.send(mimeMessage);
         } catch (Exception e) {
             // Log the exception for debugging. You might want to handle this differently based on your application's needs.
