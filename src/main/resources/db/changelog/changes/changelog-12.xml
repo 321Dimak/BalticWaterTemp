@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <changeSet id="29" author="Dmitrijs Kozlovs">
+        <sql>
+            INSERT INTO stations (id, name) VALUES
+            ('HD073810', 'Rīga, Mīlgrāvis canal'),
+            ('HD073352', 'Aiviekstes HES'),
+            ('HD073552', 'Baloži, Bērze river'),
+            ('HD073482', 'Bauska, Mūsa river'),
+            ('HD073548', 'Bramberģe, Tērvete river'),
+            ('HD073720', 'Brūnuļi, Indrica rive'),
+            ('HD073901', 'Burtnieki, Burtnieku lake'),
+            ('HD073813', 'Carnikava, Gauja river'),
+            ('HD073709', 'Cīrava, Durbe river'),
+            ('HD073682', 'Dūkupji, Bārta river'),
+            ('HD073380', 'Griškāni, Rēzekne river'),
+            ('HD073151', 'Jēkabpils, Daugava river'),
+            ('HD073801', 'Jelgava, Lielupe river'),
+            ('HD073802', 'Kalnciems, Lielupe river'),
+            ('HD073809', 'Ķīšezers, Jugla canal'),
+            ('HD073137', 'Krāslava, Daugava river'),
+            ('HD073613', 'Kuldīga, Venta river'),
+            ('HD073334', 'Kūlenieki, Oša river'),
+            ('HD073009', 'Lagaste, Salaca river'),
+            ('HD073079', 'Lejasciems, Tirza river'),
+            ('HD073721', 'Lenderņa, Laucesa river'),
+            ('HD073400', 'Ogre river'),
+            ('HD073529', 'Lielveisi, Misa river'),
+            ('HD073366', 'Litene, Pededze river'),
+            ('HD073345', 'Lubāna, Aiviekste river'),
+            ('HD072971', 'Ludza, Big Ludzas lake'),
+            ('HD073003', 'Mazsalaca, Salaca river'),
+            ('HD073098', 'Melturi, Amata river'),
+            ('HD073422', 'Mežotne Lielupe river'),
+            ('HD073025', 'Oleri, Seda river'),
+            ('HD073641', 'Pakuļu HES'),
+            ('HD073135', 'Piedruja, Daugava river'),
+            ('HD073904', 'Pļaviņas, Pļaviņu reservoir'),
+            ('HD073653', 'Renda, Abava river'),
+            ('HD073580', 'Rojupe, Roja river'),
+            ('HD073062', 'Sigulda, Gauja river'),
+            ('HD073062', 'Spīdoles, Sventes lake'),
+            ('HD073322', 'Sīļi, Dubna river'),
+            ('HD073803', 'Sloka, Lielupe river'),
+            ('HD073424', 'Staļģene, Lielupe river'),
+            ('HD073461', 'Sudrabkalni, Viesīte river'),
+            ('HD073075', 'Taurene, Meža upīte'),
+            ('HD073659', 'Tērande, Užava river'),
+            ('HD073144', 'Vaikuļāni, Daugava river'),
+            ('HD073605', 'Vārdava, Venta river'),
+            ('HD073044', 'Velēna, Gauja river'),
+            ('HD073616', 'Vendzava, Venta river'),
+            ('HD073582', 'Vičaki, Irbe river'),
+            ('HD073411', 'Zaķi'),
+            ('HD073071', 'Zosēni, Tūlija');
+            ('SALACGRI', 'Salacgrīva, Gulf of Riga');
+            ('RISE99MS', 'Skulte, Gulf of Riga');
+            ('HD073982', 'Usmas lake');
+            ('HD073972', 'Kaunata, Rāznas lake');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
