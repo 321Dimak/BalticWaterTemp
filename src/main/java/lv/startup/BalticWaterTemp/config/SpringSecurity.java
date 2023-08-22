@@ -32,7 +32,7 @@ public class SpringSecurity {
                                 .requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/index").permitAll()  // "all" page before login
                                 .requestMatchers("/").permitAll()
-                                .requestMatchers("/user_index").authenticated()
+                                .requestMatchers("/favorites").authenticated()
                                 .requestMatchers("/static/**").permitAll()
                                 .requestMatchers("/fetch-api-data").permitAll()
                                 .anyRequest().authenticated()
@@ -41,7 +41,7 @@ public class SpringSecurity {
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/comingSoon")//user page after login
+                                .defaultSuccessUrl("/favorites")//user page after login
                                 .permitAll()
                 ).logout(
                         logout -> logout
