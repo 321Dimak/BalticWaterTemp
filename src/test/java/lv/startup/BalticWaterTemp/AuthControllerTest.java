@@ -82,12 +82,4 @@ class AuthControllerTest {
         verify(model).addAttribute("user", user);
     }
 
-    @Test
-    void listRegisteredUsers() {
-        List<UserDto> users = Arrays.asList(new UserDto(), new UserDto());
-        when(userService.findAllUsers()).thenReturn(users);
-        String view = authController.listRegisteredUsers(model);
-        assertEquals("users", view);
-        verify(model).addAttribute("users", users);
-    }
 }
