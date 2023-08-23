@@ -1,13 +1,14 @@
-package lv.startup.BalticWaterTemp;
+package lv.startup.BalticWaterTemp.core.database;
 
-import lv.startup.BalticWaterTemp.core.database.UserRepository;
 import lv.startup.BalticWaterTemp.core.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
 
 public class UserRepositoryTest {
 

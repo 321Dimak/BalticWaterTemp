@@ -1,8 +1,8 @@
-package lv.startup.BalticWaterTemp;
+package lv.startup.BalticWaterTemp.core.services;
 
 import lv.startup.BalticWaterTemp.core.database.UserRepository;
 import lv.startup.BalticWaterTemp.core.entity.User;
-import lv.startup.BalticWaterTemp.core.security.dto.UserDto;
+import lv.startup.BalticWaterTemp.core.dto.UserDto;
 import lv.startup.BalticWaterTemp.core.services.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

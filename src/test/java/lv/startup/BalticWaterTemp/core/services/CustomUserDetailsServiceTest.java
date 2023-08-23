@@ -1,4 +1,4 @@
-package lv.startup.BalticWaterTemp;
+package lv.startup.BalticWaterTemp.core.services;
 
 import lv.startup.BalticWaterTemp.core.database.UserRepository;
 import lv.startup.BalticWaterTemp.core.entity.User;

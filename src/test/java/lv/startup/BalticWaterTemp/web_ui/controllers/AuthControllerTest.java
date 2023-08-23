@@ -1,9 +1,8 @@
-package lv.startup.BalticWaterTemp;
+package lv.startup.BalticWaterTemp.web_ui.controllers;
 
-import lv.startup.BalticWaterTemp.core.entity.User;
 import lv.startup.BalticWaterTemp.core.dto.UserDto;
+import lv.startup.BalticWaterTemp.core.entity.User;
 import lv.startup.BalticWaterTemp.core.services.UserService;
-import lv.startup.BalticWaterTemp.web_ui.controllers.AuthController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,7 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class AuthControllerTest {
 
