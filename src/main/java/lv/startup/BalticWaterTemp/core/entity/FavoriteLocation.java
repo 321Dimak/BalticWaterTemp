@@ -21,9 +21,9 @@ public class FavoriteLocation {
     private String locationId;
 
     @ManyToOne
-    @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private Location location;
-    @ManyToOne
     @JoinColumn(name = "user_email", referencedColumnName = "email", insertable = false, updatable = false)
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Location location;
 }
