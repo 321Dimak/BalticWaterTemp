@@ -2,7 +2,7 @@ package lv.startup.BalticWaterTemp.core.services.impl;
 
 import jakarta.mail.internet.MimeMessage;
 import lv.startup.BalticWaterTemp.core.database.UserRepository;
-import lv.startup.BalticWaterTemp.core.security.dto.UserDto;
+import lv.startup.BalticWaterTemp.core.dto.UserDto;
 import lv.startup.BalticWaterTemp.core.entity.User;
 import lv.startup.BalticWaterTemp.core.services.UserService;
 import org.springframework.mail.javamail.MimeMessageHelper;

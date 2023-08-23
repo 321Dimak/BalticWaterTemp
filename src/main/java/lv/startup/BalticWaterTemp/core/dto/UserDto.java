@@ -1,4 +1,4 @@
-package lv.startup.BalticWaterTemp.core.security.dto;
+package lv.startup.BalticWaterTemp.core.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
