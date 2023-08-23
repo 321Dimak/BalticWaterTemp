@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.mail.javamail.JavaMailSender;
+import jakarta.mail.internet.MimeMessage;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -26,6 +28,12 @@ public class UserServiceImplTest {
     @Mock
     private PasswordEncoder passwordEncoder;
 
+    @Mock
+    private JavaMailSender mailSender;
+
+    @Mock
+    private MimeMessage mimeMessage;
+
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -35,11 +43,13 @@ public class UserServiceImplTest {
     public void testSaveUser() {
         UserDto userDto = new UserDto("TestName", "test@email.com", "testPassword");
         when(passwordEncoder.encode(userDto.getPassword())).thenReturn("encodedPassword");
+        when(mailSender.createMimeMessage()).thenReturn(mimeMessage);
 
         userService.saveUser(userDto);
 
         verify(passwordEncoder).encode(userDto.getPassword());
         verify(userRepository).save(any(User.class));
+        verify(mailSender).send(mimeMessage);
     }
 
     @Test
