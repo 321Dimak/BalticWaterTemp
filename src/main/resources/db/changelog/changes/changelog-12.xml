@@ -57,10 +57,8 @@
             ('HD073616', 'Vendzava, Venta river'),
             ('HD073582', 'Vičaki, Irbe river'),
             ('HD073411', 'Zaķi'),
-            ('HD073071', 'Zosēni, Tūlija');
-            ('SALACGRI', 'Salacgrīva, Gulf of Riga');
-            ('RISE99MS', 'Skulte, Gulf of Riga');
-            ('HD073982', 'Usmas lake');
+            ('HD073071', 'Zosēni, Tūlija'),
+            ('HD073982', 'Usmas lake'),
             ('HD073972', 'Kaunata, Rāznas lake');
         </sql>
     </changeSet>
