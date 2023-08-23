@@ -33,9 +33,18 @@ public class Notification {
     private boolean levelHigherAlert;
 
     @ManyToOne
-    @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private Location location;
-    @ManyToOne
     @JoinColumn(name = "user_email", referencedColumnName = "email", insertable = false, updatable = false)
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Location location;
+
+    public Notification(String userEmail, String locationId, double temperature, double level, User user, Location location) {
+        this.userEmail = userEmail;
+        this.locationId = locationId;
+        this.temperature = temperature;
+        this.level = level;
+        this.user = user;
+        this.location = location;
+    }
 }
