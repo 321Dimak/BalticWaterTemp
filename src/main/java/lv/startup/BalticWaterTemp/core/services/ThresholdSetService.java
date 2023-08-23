@@ -3,6 +3,7 @@ package lv.startup.BalticWaterTemp.core.services;
 import lv.startup.BalticWaterTemp.core.database.LocationRepository;
 import lv.startup.BalticWaterTemp.core.database.NotificationRepository;
 import lv.startup.BalticWaterTemp.core.database.UserRepository;
+import lv.startup.BalticWaterTemp.core.dto.LevelThresholdDTO;
 import lv.startup.BalticWaterTemp.core.dto.TempThresholdDTO;
 import lv.startup.BalticWaterTemp.core.entity.Location;
 import lv.startup.BalticWaterTemp.core.entity.Notification;
@@ -38,7 +39,7 @@ public class ThresholdSetService {
             notificationRepository.save(new Notification(dto.getUserEmail(), dto.getLocationId(), dto.getTemperature(), dto.getLevel(), user, location));
         }
     }
-public void setLevelThreshold(TempThresholdDTO dto) {
+public void setLevelThreshold(LevelThresholdDTO dto) {
         User user = userRepository.findByEmail(dto.getUserEmail());
         Location location = locationRepository.findByLocationId(dto.getLocationId());
         if (user == null) {

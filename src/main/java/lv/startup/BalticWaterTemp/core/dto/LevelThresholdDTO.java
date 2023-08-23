@@ -15,4 +15,10 @@ public class LevelThresholdDTO {
     private double temperature = Integer.MAX_VALUE;
     @DecimalMin(value = "-Infinity", message = "Level must be a valid number")
     private double level;
+
+    public LevelThresholdDTO(String userEmail, String locationId, double level) {
+        this.userEmail = userEmail;
+        this.locationId = locationId;
+        this.level = level;
+    }
 }
