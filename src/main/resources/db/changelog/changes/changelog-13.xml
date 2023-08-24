@@ -5,9 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
 
-    <changeSet id="29" author="Dmitrijs Kozlovs">
+    <changeSet id="30" author="Dmitrijs Kozlovs">
         <sql>
-            INSERT INTO stations (id, name) VALUES
+            INSERT INTO location (id, name) VALUES
             ('HD073810', 'Rīga, Mīlgrāvis canal'),
             ('HD073352', 'Aiviekstes HES'),
             ('HD073552', 'Baloži, Bērze river'),
