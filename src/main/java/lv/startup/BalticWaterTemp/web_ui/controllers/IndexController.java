@@ -1,18 +1,13 @@
 package lv.startup.BalticWaterTemp.web_ui.controllers;
 
-import lv.startup.BalticWaterTemp.core.dto.FavoriteLocationDTO;
 import lv.startup.BalticWaterTemp.core.entity.FavoriteLocation;
 import lv.startup.BalticWaterTemp.core.entity.User;
 import lv.startup.BalticWaterTemp.core.services.FavoriteLocationService;
-import lv.startup.BalticWaterTemp.core.services.UserAuthenticationService;
 import lv.startup.BalticWaterTemp.core.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.List;
