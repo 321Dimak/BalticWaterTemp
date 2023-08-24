@@ -36,7 +36,7 @@ public class ThresholdSetServiceTest {
     @Test
     public void testSetTempThreshold() {
         // Given
-        TempThresholdDTO dto = new TempThresholdDTO(); // Assuming you have a default constructor or provide required values
+        TempThresholdDTO dto = new TempThresholdDTO();
         User mockUser = new User();
         Location mockLocation = new Location();
 
@@ -44,10 +44,8 @@ public class ThresholdSetServiceTest {
         when(locationRepository.findByLocationId(dto.getLocationId())).thenReturn(mockLocation);
         when(notificationRepository.findByUserEmailAndLocationId(dto.getUserEmail(), dto.getLocationId())).thenReturn(null);
 
-        // When
         thresholdSetService.setTempThreshold(dto);
 
-        // Then
         verify(notificationRepository, times(1)).save(any(Notification.class));
     }
 
