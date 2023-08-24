@@ -21,10 +21,10 @@ public class Location {
     private String id;
     @Column(name = "name")
     private String name;
-    @Column(name = "temperature")
-    private double temperature;
-    @Column(name = "level")
-    private double level;
+//    @Column(name = "temperature")
+//    private double temperature;
+//    @Column(name = "level")
+//    private double level;
 
     @OneToOne(mappedBy = "location")
     private LevelHistory levelHistory;

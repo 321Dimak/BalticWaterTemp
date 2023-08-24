@@ -41,7 +41,9 @@ public class SpringSecurity {
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/comingSoon")//user page after login
+                                .successHandler((request, response, authentication) -> {
+                                    response.sendRedirect("/?loggedInUser=" + authentication.getName());
+                                })
                                 .permitAll()
                 ).logout(
                         logout -> logout
