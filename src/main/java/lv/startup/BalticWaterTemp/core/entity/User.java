@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -25,7 +26,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Notification> notifications;
     @OneToMany(mappedBy = "user")
-    private List<FavoriteLocation> favoriteLocations;
+    private Set<FavoriteLocation> favoriteLocations;
 
     public User(String email, String username, String password) {
         this.email = email;

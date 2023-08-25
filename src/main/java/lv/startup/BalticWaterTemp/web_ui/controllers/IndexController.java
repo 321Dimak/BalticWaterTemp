@@ -32,7 +32,7 @@ public class IndexController {
             User loggedInUser = userService.findByEmail(loggedInUserEmail);
             List<FavoriteLocation> favoriteLocations = favoriteLocationService.findByUserEmail(loggedInUserEmail);
             List<Location> locations = favoriteLocations.stream()
-                    .map(location -> locationService.findLocationById(location.getLocationId()))
+                    .map(location -> locationService.findLocationById(location.getLocation().getId()))
                     .collect(Collectors.toList());
             model.addAttribute("loggedInUser", loggedInUser.getUsername());
             model.addAttribute("favoriteLocations", locations);

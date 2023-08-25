@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lv.startup.BalticWaterTemp.core.entity.FavoriteLocationKey;
 
 @Data
 @NoArgsConstructor
@@ -17,4 +18,8 @@ public class FavoriteLocationDTO {
     @NotNull(message = "Location Id cannot be null")
     @NotEmpty(message = "Location Id cannot be empty")
     private String locationId;
+
+    public FavoriteLocationKey toFavoriteLocationId() {
+        return new FavoriteLocationKey(userEmail, locationId);
+    }
 }

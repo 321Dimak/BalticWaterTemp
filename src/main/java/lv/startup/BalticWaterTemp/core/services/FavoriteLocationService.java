@@ -32,7 +32,7 @@ public class FavoriteLocationService {
         if (location == null) {
             throw new EntityNotFoundException("Location not found");
         }
-        favoriteLocationRepository.save(new FavoriteLocation(dto.getUserEmail(), dto.getLocationId(), user, location));
+        favoriteLocationRepository.save(new FavoriteLocation(dto.toFavoriteLocationId(), user, location));
     }
 
     public void deleteFavoriteLocation(FavoriteLocationDTO dto) {
