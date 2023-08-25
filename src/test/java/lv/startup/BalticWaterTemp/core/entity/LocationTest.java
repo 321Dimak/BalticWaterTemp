@@ -29,20 +29,6 @@ public class LocationTest {
     }
 
     @Test
-    public void testSetAndGetTemperature() {
-        double temperature = 20.5;
-        location.setTemperature(temperature);
-        assertEquals(temperature, location.getTemperature());
-    }
-
-    @Test
-    public void testSetAndGetLevel() {
-        double level = 5.5;
-        location.setLevel(level);
-        assertEquals(level, location.getLevel());
-    }
-
-    @Test
     public void testSetAndGetLevelHistory() {
         LevelHistory levelHistory = mock(LevelHistory.class);
         location.setLevelHistory(levelHistory);

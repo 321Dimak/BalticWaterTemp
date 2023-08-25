@@ -17,15 +17,16 @@ public class FavoriteLocationTest {
     @Test
     public void testSetAndGetUserEmail() {
         String userEmail = "test@example.com";
-        favoriteLocation.setUserEmail(userEmail);
-        assertEquals(userEmail, favoriteLocation.getUserEmail());
+        favoriteLocation.setId(new FavoriteLocationKey(userEmail, "location123"));
+        assertEquals(userEmail, favoriteLocation.getId().getUserEmail());
     }
 
     @Test
     public void testSetAndGetLocationId() {
+        String userEmail = "test@example.com";
         String locationId = "location123";
-        favoriteLocation.setLocationId(locationId);
-        assertEquals(locationId, favoriteLocation.getLocationId());
+        favoriteLocation.setId(new FavoriteLocationKey(userEmail, "location123"));
+        assertEquals(locationId, favoriteLocation.getId().getLocationId());
     }
 
     @Test

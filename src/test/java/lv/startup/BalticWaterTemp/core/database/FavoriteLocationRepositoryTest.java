@@ -1,5 +1,6 @@
 package lv.startup.BalticWaterTemp.core.database;
 
+import lv.startup.BalticWaterTemp.core.entity.FavoriteLocationKey;
 import lv.startup.BalticWaterTemp.core.entity.Location;
 import lv.startup.BalticWaterTemp.core.entity.User;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,6 @@ class FavoriteLocationRepositoryTest {
         String userEmail = "user@example.com";
         String locationId = "location123";
         favoriteLocationRepository.deleteByUserEmailAndLocationId(userEmail, locationId);
-        assertFalse(favoriteLocationRepository.existsById(userEmail));
+        assertFalse(favoriteLocationRepository.existsById(new FavoriteLocationKey(userEmail, locationId)));
     }
 }
