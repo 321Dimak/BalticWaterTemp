@@ -164,8 +164,21 @@
 <h3 class="title-heading">Baltic Water Temperature</h3>
 
 <div class="buttons-container">
-    <a href="/register" class="create-account-link">Create Account</a>
-    <a href="/login" class="create-account-link">Login</a>
+    <span th:if="${loggedInUser}">
+        Welcome, <span th:text="${loggedInUser}"></span>!
+        <div>
+            Your Favorite Locations:
+            <ul>
+                <li th:each="location : ${favoriteLocations}">
+                    <span th:text="${location.name}"></span>
+                </li>
+            </ul>
+        </div>
+    </span>
+    <span th:unless="${loggedInUser}">
+        <a href="/register" class="create-account-link">Create Account</a>
+        <a href="/login" class="create-account-link">Login</a>
+    </span>
 </div>
 
 
@@ -184,9 +197,9 @@
 </div>
     <div class="stations-list">
         <ul class="stations-dropdown">
-            <li class="station-li" data-station="HD073810">Rīga</li>
-            <li class="station-li" data-station="HD073352">Aiviekstes HES</li>
-            <li class="station-li" data-station="HD073552">Baloži</li>
+            <li class="station-li" data-station="HD073810">Rīga <button class="save-favorite-button" data-location-id="HD073810">★</button></li>
+            <li class="station-li" data-station="HD073352">Aiviekstes HES <button class="save-favorite-button" data-location-id="HD073352">★</button></li>
+            <li class="station-li" data-station="HD073552">Baloži <button class="save-favorite-button" data-location-id="HD073552">★</button></li>
             <li class="station-li" data-station="HD073482">Bauska</li>
             <li class="station-li" data-station="HD073548">Bramberģe</li>
             <li class="station-li" data-station="HD073720">Brūnuļi</li>
@@ -424,6 +437,54 @@
         apiDataContainer.style.display = 'none';
         showTableButton.style.display = 'block';
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const saveButtons = document.querySelectorAll(".save-favorite-button");
+
+    saveButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const locationId = button.getAttribute("data-location-id");
+
+            // Send an AJAX request to save the favorite location
+            saveFavoriteLocation(locationId);
+        });
+    });
+});
+
+function saveFavoriteLocation(locationId) {
+    fetch("/save-favorite-location?locationId=" + locationId, {
+        method: "POST",
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log("Favorite location saved successfully.");
+            // You can update the UI or provide user feedback here
+        } else {
+            console.error("Failed to save favorite location.");
+            // Handle error scenario
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        // Handle error scenario
+    });
+}
+
+    document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM Loaded");
+    const saveButtons = document.querySelectorAll(".save-favorite-button");
+
+    saveButtons.forEach(button => {
+        console.log("Button found:", button);
+        button.addEventListener("click", function () {
+            const locationId = button.getAttribute("data-location-id");
+            console.log("Button clicked. Location ID:", locationId);
+
+            // Send an AJAX request to save the favorite location
+            saveFavoriteLocation(locationId);
+        });
+    });
+});
 
 
 </script>

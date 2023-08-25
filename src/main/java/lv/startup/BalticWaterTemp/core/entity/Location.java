@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,10 +22,10 @@ public class Location {
     private String id;
     @Column(name = "name")
     private String name;
-    @Column(name = "temperature")
-    private double temperature;
-    @Column(name = "level")
-    private double level;
+//    @Column(name = "temperature")
+//    private double temperature;
+//    @Column(name = "level")
+//    private double level;
 
     @OneToOne(mappedBy = "location")
     private LevelHistory levelHistory;
@@ -33,5 +34,5 @@ public class Location {
     @OneToMany(mappedBy = "location")
     private List<Notification> notifications;
     @OneToMany(mappedBy = "location")
-    private List<FavoriteLocation> favoriteLocations;
+    private Set<FavoriteLocation> favoriteLocations;
 }

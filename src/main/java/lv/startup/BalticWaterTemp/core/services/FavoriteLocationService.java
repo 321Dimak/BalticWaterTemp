@@ -11,6 +11,8 @@ import lv.startup.BalticWaterTemp.core.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FavoriteLocationService {
 
@@ -19,7 +21,7 @@ public class FavoriteLocationService {
     @Autowired
     private LocationRepository locationRepository;
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public void saveFavoriteLocation(FavoriteLocationDTO dto) {
         User user = userRepository.findByEmail(dto.getUserEmail());
@@ -30,10 +32,14 @@ public class FavoriteLocationService {
         if (location == null) {
             throw new EntityNotFoundException("Location not found");
         }
-        favoriteLocationRepository.save(new FavoriteLocation(dto.getUserEmail(), dto.getLocationId(), user, location));
+        favoriteLocationRepository.save(new FavoriteLocation(dto.toFavoriteLocationId(), user, location));
     }
 
     public void deleteFavoriteLocation(FavoriteLocationDTO dto) {
         favoriteLocationRepository.deleteByUserEmailAndLocationId(dto.getUserEmail(), dto.getLocationId());
+    }
+
+    public List<FavoriteLocation> findByUserEmail(String userEmail) {
+        return favoriteLocationRepository.findByUserEmail(userEmail);
     }
 }
