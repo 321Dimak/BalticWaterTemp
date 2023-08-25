@@ -20,4 +20,10 @@ public class ApiController {
         ResponseEntity<String> apiResponse = apiService.fetchDataFromApi(fromDate, toDate, station);
         return apiResponse;
     }
+
+    @GetMapping("/fetch-api-temp")
+    public ResponseEntity<String> fetchApiTemp(@RequestParam("station") String station) {
+        ResponseEntity<String> apiResponse = apiService.fetchTempFromApi(station);
+        return apiResponse;
+    }
 }
