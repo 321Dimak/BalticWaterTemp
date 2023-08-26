@@ -6,158 +6,6 @@
     <meta name="developer" content="Dmitrijs Kozlovs">
     <title>Baltic Water Temperature</title>
     <link rel="stylesheet" href="../static/homepage.css">
-    <style>
-
-        .data-table th,
-        .data-table td {
-            border: 1px solid #dddddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        .data-table th {
-            background-color: #f2f2f2;
-        }
-
-        /* Add styles for the fetchDataButton and input elements */
-        #fetchDataButton {
-            margin-top: 10px;
-            padding: 8px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        #fromDate,
-        #toDate {
-            margin-top: 10px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            font-size: 14px;
-        }
-        .input-label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            justify-content: space-evenly;
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-
-        label {
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .inputs {
-            max-width: 70%;
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            align-items: center;
-        }
-        /* Style for date inputs with labels */
-        .date-input {
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            padding: 8px;
-            font-size: 14px;
-            appearance: none;
-            background-color: white;
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-
-        .station-button {
-            padding: 8px 15px;
-            background-color: #f2f2f2;
-            color: #333;
-            border: none;
-            cursor: pointer;
-            border-radius: 3px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .station-button:hover {
-            background-color: #007bff;
-            color: white;
-        }
-
-        #apiDataContainer {
-            margin-top: 20px;
-        }
-        #showTableButton {
-            margin-top: 20px;
-            background-color: #6a1b9a;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        #showTableButton:hover {
-            background-color: #8259a4;
-        }
-        .station-button {
-            margin-top: 20px;
-            background-color: #6a1b9a;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .station-button:hover {
-            background-color: #8259a4;
-        }
-        .stations-list {
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 0;
-            margin: 0;
-            display: none;
-            width: 80%;
-        }
-        .stations-dropdown {
-            padding: 0;
-            margin: 0;
-            justify-content: space-between;
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-        .station-li{
-            cursor: pointer;
-            padding: 8px;
-            border-bottom: none;
-            transition: background-color 0.3s, color 0.3s;
-            list-style: none;
-            flex: 1 0 20%;
-        }
-
-
-        .stations-list li:last-child {
-            border-bottom: none;
-        }
-
-        .stations-list li:hover {
-            background-color: #f2f2f2;
-        }
-
-    </style>
 </head>
 <body>
 
@@ -166,14 +14,7 @@
 <div class="buttons-container">
     <span th:if="${loggedInUser}">
         Welcome, <span th:text="${loggedInUser}"></span>!
-        <div>
-            Your Favorite Locations:
-            <ul>
-                <li th:each="location : ${favoriteLocations}">
-                    <span th:text="${location.name}"></span>
-                </li>
-            </ul>
-        </div>
+        <a href="/logout" class="create-account-link">Logout</a>
     </span>
     <span th:unless="${loggedInUser}">
         <a href="/register" class="create-account-link">Create Account</a>
@@ -194,12 +35,12 @@
 </div>
 <div  class="input-label" id="stationsDropdown">
     <button class="station-button">Select Station</button>
-</div>
-    <div class="stations-list">
+</div></div>
+<div class="stations-list">
         <ul class="stations-dropdown">
-            <li class="station-li" data-station="HD073810">Rīga <button class="save-favorite-button" data-location-id="HD073810">★</button></li>
-            <li class="station-li" data-station="HD073352">Aiviekstes HES <button class="save-favorite-button" data-location-id="HD073352">★</button></li>
-            <li class="station-li" data-station="HD073552">Baloži <button class="save-favorite-button" data-location-id="HD073552">★</button></li>
+            <li class="station-li" data-station="HD073810">Rīga </li>
+            <li class="station-li" data-station="HD073352">Aiviekstes HES </li>
+            <li class="station-li" data-station="HD073552">Baloži </li>
             <li class="station-li" data-station="HD073482">Bauska</li>
             <li class="station-li" data-station="HD073548">Bramberģe</li>
             <li class="station-li" data-station="HD073720">Brūnuļi</li>
@@ -247,247 +88,18 @@
             <li class="station-li" data-station="HD073411">Zaķi</li>
             <li class="station-li" data-station="HD073071">Zosēni</li>
         </ul>
-    </div>
+</div>
 
 <!--<button id="fetchDataButton">Find Temperature</button>-->
-<div style="position: relative; height:40vh; width:90vw"><canvas id="temperatureChart"></canvas></div>
-<button id="showTableButton">Show Historical Data</button>
-<div id="apiDataContainer"></div>
+<div id="selectedStation" class="selected-station"></div>
+<div id="dataContainer" style="display: none">
+    <div style="position: relative; height:40vh; width:90vw"><canvas id="temperatureChart"></canvas></div>
+    <button id="showTableButton">Show Historical Data</button>
+</div>
+<div id="apiDataContainer" style="display: none"></div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-    const fetchDataButton = document.getElementById('fetchDataButton');
-    const apiDataContainer = document.getElementById('apiDataContainer');
-    const fromDateInput = document.getElementById('fromDate');
-    const toDateInput = document.getElementById('toDate');
-    const stationButtons = document.querySelectorAll('.station-li');
-    const showTableButton = document.getElementById('showTableButton');
-    const stationsDropdown = document.getElementById('stationsDropdown');
-    const stationsList = document.querySelector('.stations-list');
-
-    stationsDropdown.addEventListener('click', () => {
-        if (stationsList.style.display === 'block') {
-            stationsList.style.display = 'none';
-        }
-        else {
-            stationsList.style.display = 'block';
-        }
-
-    });
-
-
-    stationsList.addEventListener('mouseleave', () => {
-        stationsList.style.display = 'none';
-    });
-
-    stationButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const selectedStation = button.getAttribute('data-station');
-            const selectedStationName = button.textContent;
-            fetchApiData(selectedStation, selectedStationName);
-            stationsList.style.display = 'none'; // Hide dropdown after selecting a station
-        });
-    });
-
-    showTableButton.addEventListener('click', () => {
-        apiDataContainer.style.display = 'block';
-        showTableButton.style.display = 'none';
-    });
-
-
-
-
-    window.addEventListener('load', () => {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = ('0' + (today.getMonth() + 1)).slice(-2);
-        const day = ('0' + today.getDate()).slice(-2);
-        const formattedToday = `${year}-${month}-${day}`;
-        const formattedYesterday = `${year}-${month}-${(day-1)}`;
-
-
-        fromDateInput.value = formattedYesterday;
-        toDateInput.value = formattedToday;
-        const defaultSelectedStation = stationButtons[0].getAttribute('data-station');
-
-        fetchDataButton.addEventListener('click', () => {
-            fetchApiData(defaultSelectedStation);
-        });
-    });
-
-    function fetchApiData(selectedStation, selectedStationName) {
-        const fromDate = fromDateInput.value;
-        const toDate = toDateInput.value;
-        const formattedFromDate = formatDate(fromDate, 'api');
-        const formattedToDate = formatDate(toDate, 'api');
-
-        fetch(`/fetch-api-data?station=${selectedStation}&fromDate=${formattedFromDate}&toDate=${formattedToDate}`)
-            .then(response => response.json())
-            .then(data => {
-                data.result.records.sort((a, b) => new Date(a.DATETIME) - new Date(b.DATETIME));
-                const dates = [];
-                const temperatures = [];
-
-                data.result.records.forEach(record => {
-                    dates.push(formatDate(record.DATETIME, 'display'));
-                    temperatures.push(parseFloat(record.VALUE));
-                });
-
-                displayApiData(data, selectedStationName);
-                createTemperatureChart(dates, temperatures);
-            })
-            .catch(error => {
-                console.error('Error fetching API data:', error);
-            });
-    }
-
-    let temperatureChart;
-    function createTemperatureChart(dates, temperatures) {
-        if (temperatureChart) {
-            temperatureChart.destroy();
-        }
-        const temperatureChartContext = document.getElementById('temperatureChart').getContext('2d');
-
-        temperatureChart = new Chart(temperatureChartContext, {
-            type: 'line',
-            data: {
-                labels: dates,
-                datasets: [{
-                    label: 'Temperature (°C)',
-                    data: temperatures,
-                    borderColor: '#6a1b9a',
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: false
-                    }
-                }
-            }
-        });
-        return temperatureChart;
-    }
-
-
-    function formatDate(dateString, format) {
-        const date = new Date(dateString);
-        const year = date.getFullYear();
-        const month = ('0' + (date.getMonth() + 1)).slice(-2);
-        const day = ('0' + date.getDate()).slice(-2);
-        const hours = ('0' + date.getHours()).slice(-2);
-        const minutes = ('0' + date.getMinutes()).slice(-2);
-        const seconds = ('0' + date.getSeconds()).slice(-2);
-
-        if (format === 'api') {
-            return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-        } else if (format === 'display') {
-            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-        } else {
-            return ''; // Invalid format
-        }
-    }
-
-    function displayApiData(data, selectedStationName) {
-        apiDataContainer.innerHTML = ''; // Clear previous content
-        const table = document.createElement('table');
-        table.classList.add('data-table');
-
-        // Create the header row with all the column headers
-        const headerRow = document.createElement('tr');
-        const headers = ['Date and Time', 'Station ID', 'Station Name', 'Temperature (C)'];
-        headers.forEach(headerText => {
-            const headerCell = document.createElement('th');
-            headerCell.textContent = headerText;
-            headerRow.appendChild(headerCell);
-        });
-        table.appendChild(headerRow);
-
-        // Iterate through the records and create rows
-        data.result.records.forEach(record => {
-            const row = document.createElement('tr');
-
-            // Date and Time cell
-            const datetimeCell = document.createElement('td');
-            datetimeCell.textContent = formatDate(record.DATETIME, 'display');
-            row.appendChild(datetimeCell);
-
-            // Station ID cell
-            const stationIdCell = document.createElement('td');
-            stationIdCell.textContent = record.STATION_ID;
-            row.appendChild(stationIdCell);
-
-            // Station Name cell
-            const stationNameCell = document.createElement('td');
-            stationNameCell.textContent = selectedStationName;
-            row.appendChild(stationNameCell);
-
-            // Value cell
-            const valueCell = document.createElement('td');
-            valueCell.textContent = record.VALUE;
-            row.appendChild(valueCell);
-
-            table.appendChild(row);
-        });
-
-        apiDataContainer.appendChild(table);
-        apiDataContainer.style.display = 'none';
-        showTableButton.style.display = 'block';
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-    const saveButtons = document.querySelectorAll(".save-favorite-button");
-
-    saveButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const locationId = button.getAttribute("data-location-id");
-
-            // Send an AJAX request to save the favorite location
-            saveFavoriteLocation(locationId);
-        });
-    });
-});
-
-function saveFavoriteLocation(locationId) {
-    fetch("/save-favorite-location?locationId=" + locationId, {
-        method: "POST",
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log("Favorite location saved successfully.");
-            // You can update the UI or provide user feedback here
-        } else {
-            console.error("Failed to save favorite location.");
-            // Handle error scenario
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        // Handle error scenario
-    });
-}
-
-    document.addEventListener("DOMContentLoaded", function () {
-    console.log("DOM Loaded");
-    const saveButtons = document.querySelectorAll(".save-favorite-button");
-
-    saveButtons.forEach(button => {
-        console.log("Button found:", button);
-        button.addEventListener("click", function () {
-            const locationId = button.getAttribute("data-location-id");
-            console.log("Button clicked. Location ID:", locationId);
-
-            // Send an AJAX request to save the favorite location
-            saveFavoriteLocation(locationId);
-        });
-    });
-});
-
-
-</script>
+<script src="../static/homepage.js"></script>
 
 
 

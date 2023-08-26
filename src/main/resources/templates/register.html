@@ -7,13 +7,90 @@
     <title>Baltic Water Temperature</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        /* Custom styling for the navbar */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #000000;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            width: 100%;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f7f7f7;
+        }
+
+        .card-header {
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px 5px 0 0;
+            background-color: transparent;
+        }
+        .card-header h3 {
+            font-weight: bold;
+        }
+        .card-body {
+            padding: 20px;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+        #registerLink {
+            color: #6a1b9a;
+        }
+        .btn-primary {
+            background-color: #6a1b9a;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #8259a4;
+        }
+        .nav {
+            width: 100%;
+            margin-right: 0;
+            margin-left: 0;
+            background-color: #6a1b9a; /* Purple background color */
+            color: white; /* White text color */
+            font-weight: bold; /* Bold text */
+            justify-content: center; /* Center alignment */
+            padding: 10px; /* Add some padding for better appearance */
+        }
+
+        .nav a {
+            color: white; /* White link color */
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .nav button {
+            background-color: transparent; /* Transparent background for the button */
+            border: none; /* Remove button border */
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" th:fragment="header">
-    <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">Baltic Water Temperature</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+<nav class="nav" th:fragment="header">
+    <div class="">
+        <a class="" th:href="@{/}">Baltic Water Temperature</a>
+        <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""></span>
         </button>
     </div>
 </nav>
@@ -28,7 +105,7 @@
                     to our app!</div>
             </div>
             <div class="card-header">
-                <h2 class="text-center">Registration</h2>
+                <h3 class="text-center">SIGN UP</h3>
             </div>
             <div class="card-body">
                 <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
@@ -38,7 +115,7 @@
                         <input class="form-control"
                                id="name"
                                name="name"
-                               placeholder="Enter name"
+                               placeholder=""
                                th:field="*{name}"
                                type="text"
                         />
@@ -51,7 +128,7 @@
                         <input class="form-control"
                                id="email"
                                name="email"
-                               placeholder="Enter email address"
+                               placeholder=""
                                th:field="*{email}"
                                type="email"
                         />
@@ -64,7 +141,7 @@
                         <input class="form-control"
                                id="password"
                                name="password"
-                               placeholder="Enter password"
+                               placeholder=""
                                th:field="*{password}"
                                type="password"
                         />
@@ -75,7 +152,7 @@
 
                     <div class="form-group mb-3">
                         <button class="btn btn-primary" type="submit">Register</button>
-                        <span>Already registered? <a href="/" th:href="@{/login}">Login
+                        <span>Already registered? <a id="registerLink" href="/" th:href="@{/login}">Login
                              here</a></span>
                     </div>
                 </form>
