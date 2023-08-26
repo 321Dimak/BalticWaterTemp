@@ -3,10 +3,26 @@ plugins {
 	id 'org.springframework.boot' version '3.1.1'
 	id 'io.spring.dependency-management' version '1.1.0'
 	id 'org.liquibase.gradle' version '2.0.4'
+	id 'application'
+}
+apply plugin: 'application'
+
+application {
+	mainClassName = 'lv.startup.BalticWaterTemp.BalticWaterTempApplication'
 }
 
 group = 'lv.startup'
 version = '0.0.1-SNAPSHOT'
+
+jar {
+	archiveBaseName = 'gs-gradle'
+	archiveVersion =  '0.1.0'
+}
+
+sourceCompatibility = 17
+targetCompatibility = 17
+
+
 
 java {
 	sourceCompatibility = '17'
