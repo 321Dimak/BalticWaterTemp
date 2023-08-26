@@ -36,6 +36,9 @@ public class IndexController {
                     .collect(Collectors.toList());
             model.addAttribute("loggedInUser", loggedInUser.getUsername());
             model.addAttribute("favoriteLocations", locations);
+            model.addAttribute("isLoggedIn", true);
+        } else {
+            model.addAttribute("isLoggedIn", false);
         }
         return "index";
     }
