@@ -35,6 +35,7 @@ public class SpringSecurity {
                                 .requestMatchers("/user_index").authenticated()
                                 .requestMatchers("/static/**").permitAll()
                                 .requestMatchers("/fetch-api-data").permitAll()
+                                .requestMatchers("/fetch-api-temp").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(
