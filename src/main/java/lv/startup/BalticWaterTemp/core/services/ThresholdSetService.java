@@ -11,10 +11,13 @@ import lv.startup.BalticWaterTemp.core.entity.Notification;
 import lv.startup.BalticWaterTemp.core.entity.User;
 import lv.startup.BalticWaterTemp.core.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -27,16 +30,26 @@ public class ThresholdSetService {
     private UserRepository userRepository;
     @Autowired
     private LocationRepository locationRepository;
-    private final double PREDEFINED_TEMPERATURE = 20.0;//method for fetching
+    @Autowired
+    private ApiService apiService;
 
     @Autowired
     private JavaMailSender mailSender;
 
-    private void sendTemperatureAlertEmail(String userEmail, double clientTemperature) {
+    private void sendTemperatureAlertEmail(String userEmail, String locationId, double clientTemperature) {
         try {
+            ResponseEntity<String> response = apiService.fetchTempFromApi(locationId);
+            JSONObject jsonObject = new JSONObject(response.getBody());
+            JSONArray records = jsonObject.getJSONArray("records");
+            double apiTemperature = 0.0;
+            if (records.length() > 0) {
+                JSONObject firstRecord = records.getJSONObject(0);
+                apiTemperature = firstRecord.getDouble("VALUE");
+            }
+
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
-            String alertType = clientTemperature > PREDEFINED_TEMPERATURE ? "high" : "low";
+            String alertType = clientTemperature > apiTemperature ? "high" : "low";
             String htmlMsg = "<h3>Temperature Alert!</h3><p>The temperature " + clientTemperature + "°C is " + alertType + ".</p>";
             helper.setText(htmlMsg, true);
             helper.setTo(userEmail);
@@ -81,13 +94,21 @@ public class ThresholdSetService {
         List<Notification> notifications = notificationRepository.findAll();
         for (Notification notification : notifications) {
             if (!notification.isTempLowerAlert() && !notification.isTempHigherAlert()) {
+                ResponseEntity<String> response = apiService.fetchTempFromApi(notification.getLocationId());
+                JSONObject jsonObject = new JSONObject(response.getBody());
+                JSONArray records = jsonObject.getJSONArray("records");
+                double apiTemperature = 0.0;
+                if (records.length() > 0) {
+                    JSONObject firstRecord = records.getJSONObject(0);
+                    apiTemperature = firstRecord.getDouble("VALUE");
+                }
                 double clientTemperature = notification.getTemperature();
-                if (clientTemperature > PREDEFINED_TEMPERATURE) {
+                if (clientTemperature > apiTemperature) {
                     notification.setTempHigherAlert(true);
-                    sendTemperatureAlertEmail(notification.getUserEmail(), clientTemperature);
-                } else if (clientTemperature < PREDEFINED_TEMPERATURE) {
+                    sendTemperatureAlertEmail(notification.getUserEmail(), notification.getLocationId(), clientTemperature);
+                } else if (clientTemperature < apiTemperature) {
                     notification.setTempLowerAlert(true);
-                    sendTemperatureAlertEmail(notification.getUserEmail(), clientTemperature);
+                    sendTemperatureAlertEmail(notification.getUserEmail(), notification.getLocationId(), clientTemperature);
                 }
                 notificationRepository.save(notification);
             }
