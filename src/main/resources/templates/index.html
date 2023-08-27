@@ -167,6 +167,14 @@
     <span th:if="${loggedInUser}">
         Welcome, <span th:text="${loggedInUser}"></span>!
         <a href="/logout" class="create-account-link">Logout</a>
+        <div>
+            Your Favorite Locations:
+            <ul>
+                <li th:each="location : ${favoriteLocations}">
+                    <span th:text="${location.name}"></span>
+                </li>
+            </ul>
+        </div>
     </span>
     <span th:unless="${loggedInUser}">
         <a href="/register" class="create-account-link">Create Account</a>
@@ -190,55 +198,58 @@
 </div></div>
 <div class="stations-list">
         <ul class="stations-dropdown">
-            <li class="station-li" data-station="HD073810">Rīga</li>
+            <li class="station-li" data-station="HD073810">Rīga, Mīlgrāvis canal</li>
             <li class="station-li" data-station="HD073352">Aiviekstes HES</li>
-            <li class="station-li" data-station="HD073552">Baloži</li>
-            <li class="station-li" data-station="HD073482">Bauska</li>
-            <li class="station-li" data-station="HD073548">Bramberģe</li>
-            <li class="station-li" data-station="HD073720">Brūnuļi</li>
-            <li class="station-li" data-station="HD073901">Burtnieki</li>
-            <li class="station-li" data-station="HD073813">Carnikava</li>
-            <li class="station-li" data-station="HD073709">Cīrava</li>
-            <li class="station-li" data-station="HD073682">Dūkupji</li>
-            <li class="station-li" data-station="HD073380">Griškāni</li>
-            <li class="station-li" data-station="HD073151">Jēkabpils</li>
-            <li class="station-li" data-station="HD073801">Jelgava</li>
-            <li class="station-li" data-station="HD073802">Kalnciems</li>
-            <li class="station-li" data-station="HD073809">Ķīšezers</li>
-            <li class="station-li" data-station="HD073137">Krāslava</li>
-            <li class="station-li" data-station="HD073613">Kuldīga</li>
-            <li class="station-li" data-station="HD073334">Kūlenieki</li>
-            <li class="station-li" data-station="HD073009">Lagaste</li>
-            <li class="station-li" data-station="HD073079">Lejasciems</li>
-            <li class="station-li" data-station="HD073721">Lenderņa</li>
-            <li class="station-li" data-station="HD073400">Lielpeči</li>
-            <li class="station-li" data-station="HD073529">Lielveisi</li>
-            <li class="station-li" data-station="HD073366">Litene</li>
-            <li class="station-li" data-station="HD073345">Lubāna</li>
-            <li class="station-li" data-station="HD072971">Ludza</li>
-            <li class="station-li" data-station="HD073003">Mazsalaca</li>
-            <li class="station-li" data-station="HD073098">Melturi</li>
-            <li class="station-li" data-station="HD073422">Mežotne</li>
-            <li class="station-li" data-station="HD073025">Oleri</li>
+            <li class="station-li" data-station="HD073552">Baloži, Bērze river</li>
+            <li class="station-li" data-station="HD073482">Bauska, Mūsa river</li>
+            <li class="station-li" data-station="HD073548">Bramberģe, Tērvete river</li>
+            <li class="station-li" data-station="HD073720">Brūnuļi, Indrica rive</li>
+            <li class="station-li" data-station="HD073901">Burtnieki, Burtnieku lake</li>
+            <li class="station-li" data-station="HD073813">Carnikava, Gauja river</li>
+            <li class="station-li" data-station="HD073709">Cīrava, Durbe river</li>
+            <li class="station-li" data-station="HD073682">Dūkupji, Bārta river</li>
+            <li class="station-li" data-station="HD073380">Griškāni, Rēzekne river</li>
+            <li class="station-li" data-station="HD073151">Jēkabpils, Daugava river</li>
+            <li class="station-li" data-station="HD073801">Jelgava, Lielupe river</li>
+            <li class="station-li" data-station="HD073802">Kalnciems, Lielupe river</li>
+            <li class="station-li" data-station="HD073809">Ķīšezers, Jugla canal</li>
+            <li class="station-li" data-station="HD073137">Krāslava, Daugava river</li>
+            <li class="station-li" data-station="HD073613">Kuldīga, Venta river</li>
+            <li class="station-li" data-station="HD073334">Kūlenieki, Oša river</li>
+            <li class="station-li" data-station="HD073009">Lagaste, Salaca river</li>
+            <li class="station-li" data-station="HD073079">Lejasciems, Tirza river</li>
+            <li class="station-li" data-station="HD073721">Lenderņa, Laucesa river</li>
+            <li class="station-li" data-station="HD073400">Ogre river</li>
+            <li class="station-li" data-station="HD073529">Lielveisi, Misa river</li>
+            <li class="station-li" data-station="HD073366">Litene, Pededze river</li>
+            <li class="station-li" data-station="HD073345">Lubāna, Aiviekste river</li>
+            <li class="station-li" data-station="HD072971">Ludza, Big Ludzas lake</li>
+            <li class="station-li" data-station="HD073003">Mazsalaca, Salaca river</li>
+            <li class="station-li" data-station="HD073098">Melturi, Amata river</li>
+            <li class="station-li" data-station="HD073422">Mežotne Lielupe river</li>
+            <li class="station-li" data-station="HD073025">Oleri, Seda river</li>
             <li class="station-li" data-station="HD073641">Pakuļu HES</li>
-            <li class="station-li" data-station="HD073135">Piedruja</li>
-            <li class="station-li" data-station="HD073904">Pļaviņas</li>
-            <li class="station-li" data-station="HD073653">Renda</li>
-            <li class="station-li" data-station="HD073580">Rojupe</li>
-            <li class="station-li" data-station="HD073062">Sigulda</li>
-            <li class="station-li" data-station="HD073322">Sīļi</li>
-            <li class="station-li" data-station="HD073803">Sloka</li>
-            <li class="station-li" data-station="HD073424">Staļģene</li>
-            <li class="station-li" data-station="HD073461">Sudrabkalni</li>
-            <li class="station-li" data-station="HD073075">Taurene</li>
-            <li class="station-li" data-station="HD073659">Tērande</li>
-            <li class="station-li" data-station="HD073144">Vaikuļāni</li>
-            <li class="station-li" data-station="HD073605">Vārdava</li>
-            <li class="station-li" data-station="HD073044">Velēna</li>
-            <li class="station-li" data-station="HD073616">Vendzava</li>
-            <li class="station-li" data-station="HD073582">Vičaki</li>
+            <li class="station-li" data-station="HD073135">Piedruja, Daugava river</li>
+            <li class="station-li" data-station="HD073904">Pļaviņas, Pļaviņu reservoir</li>
+            <li class="station-li" data-station="HD073653">Renda, Abava river</li>
+            <li class="station-li" data-station="HD073580">Rojupe, Roja river</li>
+            <li class="station-li" data-station="HD073062">Sigulda, Gauja river</li>
+            <li class="station-li" data-station="HD073953">Spīdoles, Sventes lake</li>
+            <li class="station-li" data-station="HD073322">Sīļi, Dubna river</li>
+            <li class="station-li" data-station="HD073803">Sloka, Lielupe river</li>
+            <li class="station-li" data-station="HD073424">Staļģene, Lielupe river</li>
+            <li class="station-li" data-station="HD073461">Sudrabkalni, Viesīte river</li>
+            <li class="station-li" data-station="HD073075">Taurene, Meža upīte</li>
+            <li class="station-li" data-station="HD073659">Tērande, Užava river</li>
+            <li class="station-li" data-station="HD073144">Vaikuļāni, Daugava river</li>
+            <li class="station-li" data-station="HD073605">Vārdava, Venta river</li>
+            <li class="station-li" data-station="HD073044">Velēna, Gauja river</li>
+            <li class="station-li" data-station="HD073616">Vendzava, Venta river</li>
+            <li class="station-li" data-station="HD073582">Vičaki, Irbe river</li>
             <li class="station-li" data-station="HD073411">Zaķi</li>
-            <li class="station-li" data-station="HD073071">Zosēni</li>
+            <li class="station-li" data-station="HD073071">Zosēni, Tūlija</li>
+            <li class="station-li" data-station="HD073982">Usmas lake</li>
+            <li class="station-li" data-station="HD073972">Kaunata, Rāznas lake</li>
         </ul>
 </div>
 
