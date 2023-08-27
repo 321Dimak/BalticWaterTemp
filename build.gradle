@@ -35,6 +35,7 @@ dependencies {
 	implementation 'org.glassfish:jakarta.el:4.0.2'
     implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 	implementation 'org.testng:testng:7.7.0'
+	implementation 'org.json:json:20210307'
 	testImplementation 'junit:junit:4.13.1'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
