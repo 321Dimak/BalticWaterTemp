@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <changeSet id="31" author="Dmitrijs Kozlovs">
+        <dropPrimaryKey tableName="notification" constraintName="PK_notification"/>
+    </changeSet>
+
+    <changeSet id="32" author="Dmitrijs Kozlovs">
+        <addPrimaryKey columnNames="user_email, location_id" constraintName="PK_notification" tableName="notification"/>
+    </changeSet>
+</databaseChangeLog>

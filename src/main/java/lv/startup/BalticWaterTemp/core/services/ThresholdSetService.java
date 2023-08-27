@@ -71,12 +71,12 @@ public class ThresholdSetService {
         if (location == null) {
             throw new EntityNotFoundException("Location not found");
         }
-        Notification existingNotification = notificationRepository.findByUserEmailAndLocationId(dto.getUserEmail(), dto.getLocationId());
+        Notification existingNotification = notificationRepository.findById(dto.toNotificationKey()).orElse(null);
         if (existingNotification != null) {
             existingNotification.setTemperature(dto.getTemperature());
             notificationRepository.save(existingNotification);
         } else {
-            notificationRepository.save(new Notification(dto.getUserEmail(), dto.getLocationId(), dto.getTemperature(), 999999.9, user, location));
+            notificationRepository.save(new Notification(dto.toNotificationKey(), dto.getTemperature(), 999999.9, user, location));
         }
         return new SaveTempNotificationResponse("Success");
     }
@@ -130,7 +130,7 @@ public void setLevelThreshold(LevelThresholdDTO dto) {
             existingNotification.setLevel(dto.getLevel());
             notificationRepository.save(existingNotification);
         } else {
-            notificationRepository.save(new Notification(dto.getUserEmail(), dto.getLocationId(), 999999999.9, dto.getLevel(), user, location));
+            notificationRepository.save(new Notification(dto.toNotificationKey(), 999999999.9, dto.getLevel(), user, location));
         }
     }
 

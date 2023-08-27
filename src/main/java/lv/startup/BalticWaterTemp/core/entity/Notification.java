@@ -39,9 +39,8 @@ public class Notification {
     @JoinColumn(name = "location_id")
     private Location location;
 
-    public Notification(String userEmail, String locationId, double temperature, double level, User user, Location location) {
-        this.id.setUserEmail(userEmail);
-        this.id.setLocationId(locationId);
+    public Notification(NotificationKey id, double temperature, double level, User user, Location location) {
+        this.id = id;
         this.temperature = temperature;
         this.level = level;
         this.user = user;
@@ -52,4 +51,7 @@ public class Notification {
         this.levelHigherAlert = false;
     }
 
+    public Notification(NotificationKey id) {
+        this.id = id;
+    }
 }
