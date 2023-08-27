@@ -34,10 +34,10 @@ public class TempThresholdDTOTest {
         assertEquals(temperature, tempThresholdDTO.getTemperature());
     }
 
-    @Test
-    public void testSetAndGetLevel() {
-        double level = 5.5;
-        tempThresholdDTO.setLevel(level);
-        assertEquals(level, tempThresholdDTO.getLevel());
-    }
+//    @Test
+//    public void testSetAndGetLevel() {
+//        double level = 5.5;
+//        tempThresholdDTO.setLevel(level);
+//        assertEquals(level, tempThresholdDTO.getLevel());
+//    }
 }

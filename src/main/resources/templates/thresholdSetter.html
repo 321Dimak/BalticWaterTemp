@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="developer" content="Dmitrijs Kozlovs">
+    <title></title>
+</head>
+<body>
+
+<h3>Set Threshold Notifications</h3>
+
+<table>
+<tr>
+    <td>Email:</td>
+    <td>Location:</td>
+    <td>Temperature:</td>
+</tr>
+<tr>
+    <form action="/thresholdSetter" th:object="${request}" method="post">
+        <td><input type="text" th:field="*{userEmail}"/></td>
+        <select th:field="*{locationId}">
+            <option value="HD073810">Rīga, Mīlgrāvis canal</option>
+            <option value="HD073352">Aiviekstes HES</option>
+            <option value="HD073552">Baloži, Bērze river</option>
+            <option value="HD073482">Bauska, Mūsa river</option>
+            <option value="HD073548">Bramberģe, Tērvete river</option>
+            <option value="HD073720">Brūnuļi, Indrica rive</option>
+        </select>
+        <td><input type="number" step="0.1" th:field="*{temperature}"/></td>
+        <td><input type="submit" value="Save temperature"/></td>
+    </form>
+</tr>
+    <p th:text="${message}"></p>
+</table>
+<a href="/">To home page</a>
+</body>
+</html>

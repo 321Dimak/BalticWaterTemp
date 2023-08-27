@@ -1,6 +1,7 @@
 package lv.startup.BalticWaterTemp.core.database;
 
 import lv.startup.BalticWaterTemp.core.entity.Notification;
+import lv.startup.BalticWaterTemp.core.entity.NotificationKey;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -23,14 +24,14 @@ public class NotificationRepositoryTest {
         String testUserEmail = "test@example.com";
         String testLocationId = "location123";
         Notification mockNotification = new Notification();
-        mockNotification.setUserEmail(testUserEmail);
-        mockNotification.setLocationId(testLocationId);
+        NotificationKey notificationKey = new NotificationKey(testUserEmail, testLocationId);
+        mockNotification.setId(notificationKey);
 
         when(notificationRepository.findByUserEmailAndLocationId(testUserEmail, testLocationId))
                 .thenReturn(mockNotification);
 
         Notification notification = notificationRepository.findByUserEmailAndLocationId(testUserEmail, testLocationId);
-        assertEquals(testUserEmail, notification.getUserEmail());
-        assertEquals(testLocationId, notification.getLocationId());
+        assertEquals(testUserEmail, notification.getId().getUserEmail());
+        assertEquals(testLocationId, notification.getId().getLocationId());
     }
 }

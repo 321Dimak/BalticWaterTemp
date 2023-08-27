@@ -12,13 +12,13 @@ public class TempThresholdDTO {
 
     private String userEmail;
     private String locationId;
-    @DecimalMin(value = "-Infinity", message = "Temperature must be a valid number")
+//    @DecimalMin(value = "-Infinity", message = "Temperature must be a valid number")
     private double temperature;
-    private double level = Integer.MAX_VALUE;
+//    private double level = Integer.MAX_VALUE;
 
-    public TempThresholdDTO(String userEmail, String locationId, double temperature) {
-        this.userEmail = userEmail;
-        this.locationId = locationId;
-        this.temperature = temperature;
-    }
+//    public TempThresholdDTO(String userEmail, String locationId, double temperature) {
+//        this.userEmail = userEmail;
+//        this.locationId = locationId;
+//        this.temperature = temperature;
+//    }
 }

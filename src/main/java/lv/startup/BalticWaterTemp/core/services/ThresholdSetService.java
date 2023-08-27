@@ -10,6 +10,7 @@ import lv.startup.BalticWaterTemp.core.entity.Location;
 import lv.startup.BalticWaterTemp.core.entity.Notification;
 import lv.startup.BalticWaterTemp.core.entity.User;
 import lv.startup.BalticWaterTemp.core.exceptions.EntityNotFoundException;
+import lv.startup.BalticWaterTemp.core.responses.SaveTempNotificationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -61,7 +62,7 @@ public class ThresholdSetService {
         }
     }
 
-    public void setTempThreshold(TempThresholdDTO dto) {
+    public SaveTempNotificationResponse setTempThreshold(TempThresholdDTO dto) {
         User user = userRepository.findByEmail(dto.getUserEmail());
         Location location = locationRepository.findByLocationId(dto.getLocationId());
         if (user == null) {
@@ -75,8 +76,9 @@ public class ThresholdSetService {
             existingNotification.setTemperature(dto.getTemperature());
             notificationRepository.save(existingNotification);
         } else {
-            notificationRepository.save(new Notification(dto.getUserEmail(), dto.getLocationId(), dto.getTemperature(), dto.getLevel(), user, location));
+            notificationRepository.save(new Notification(dto.getUserEmail(), dto.getLocationId(), dto.getTemperature(), 999999.9, user, location));
         }
+        return new SaveTempNotificationResponse("Success");
     }
 
     @Scheduled(cron = "0 0 0 * * ?")
@@ -94,7 +96,7 @@ public class ThresholdSetService {
         List<Notification> notifications = notificationRepository.findAll();
         for (Notification notification : notifications) {
             if (!notification.isTempLowerAlert() && !notification.isTempHigherAlert()) {
-                ResponseEntity<String> response = apiService.fetchTempFromApi(notification.getLocationId());
+                ResponseEntity<String> response = apiService.fetchTempFromApi(notification.getId().getLocationId());
                 JSONObject jsonObject = new JSONObject(response.getBody());
                 JSONArray records = jsonObject.getJSONArray("records");
                 double apiTemperature = 0.0;
@@ -105,10 +107,10 @@ public class ThresholdSetService {
                 double clientTemperature = notification.getTemperature();
                 if (clientTemperature > apiTemperature) {
                     notification.setTempHigherAlert(true);
-                    sendTemperatureAlertEmail(notification.getUserEmail(), notification.getLocationId(), clientTemperature);
+                    sendTemperatureAlertEmail(notification.getId().getUserEmail(), notification.getId().getLocationId(), clientTemperature);
                 } else if (clientTemperature < apiTemperature) {
                     notification.setTempLowerAlert(true);
-                    sendTemperatureAlertEmail(notification.getUserEmail(), notification.getLocationId(), clientTemperature);
+                    sendTemperatureAlertEmail(notification.getId().getUserEmail(), notification.getId().getLocationId(), clientTemperature);
                 }
                 notificationRepository.save(notification);
             }
@@ -128,7 +130,7 @@ public void setLevelThreshold(LevelThresholdDTO dto) {
             existingNotification.setLevel(dto.getLevel());
             notificationRepository.save(existingNotification);
         } else {
-            notificationRepository.save(new Notification(dto.getUserEmail(), dto.getLocationId(), dto.getTemperature(), dto.getLevel(), user, location));
+            notificationRepository.save(new Notification(dto.getUserEmail(), dto.getLocationId(), 999999999.9, dto.getLevel(), user, location));
         }
     }
 

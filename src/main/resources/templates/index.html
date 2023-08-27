@@ -163,10 +163,13 @@
 
 <h3 class="title-heading">Baltic Water Temperature</h3>
 
+
+
 <div class="buttons-container">
     <span th:if="${loggedInUser}">
         Welcome, <span th:text="${loggedInUser}"></span>!
-        <a href="/logout" class="create-account-link">Logout</a>
+        <a href="/logout" class="create-account-link">Logout</a> <br>
+        <a href="/thresholdSetter">Set Threshold Notifications</a> <br>
     </span>
     <span th:unless="${loggedInUser}">
         <a href="/register" class="create-account-link">Create Account</a>
@@ -176,83 +179,85 @@
 
 
 <div class="inputs">
-<div class="input-label">
-    <label for="fromDate">From:</label>
-    <input type="date" id="fromDate" class="date-input" placeholder="From Date">
-</div>
+    <div class="input-label">
+        <label for="fromDate">From:</label>
+        <input type="date" id="fromDate" class="date-input" placeholder="From Date">
+    </div>
 
-<div class="input-label">
-    <label for="toDate">To:</label>
-    <input type="date" id="toDate" class="date-input" placeholder="To Date">
+    <div class="input-label">
+        <label for="toDate">To:</label>
+        <input type="date" id="toDate" class="date-input" placeholder="To Date">
+    </div>
+    <div class="input-label" id="stationsDropdown">
+        <button class="station-button">Select Station</button>
+    </div>
 </div>
-<div  class="input-label" id="stationsDropdown">
-    <button class="station-button">Select Station</button>
-</div></div>
 <div class="stations-list">
-        <ul class="stations-dropdown">
-            <li class="station-li" data-station="HD073810">Rīga</li>
-            <li class="station-li" data-station="HD073352">Aiviekstes HES</li>
-            <li class="station-li" data-station="HD073552">Baloži</li>
-            <li class="station-li" data-station="HD073482">Bauska</li>
-            <li class="station-li" data-station="HD073548">Bramberģe</li>
-            <li class="station-li" data-station="HD073720">Brūnuļi</li>
-            <li class="station-li" data-station="HD073901">Burtnieki</li>
-            <li class="station-li" data-station="HD073813">Carnikava</li>
-            <li class="station-li" data-station="HD073709">Cīrava</li>
-            <li class="station-li" data-station="HD073682">Dūkupji</li>
-            <li class="station-li" data-station="HD073380">Griškāni</li>
-            <li class="station-li" data-station="HD073151">Jēkabpils</li>
-            <li class="station-li" data-station="HD073801">Jelgava</li>
-            <li class="station-li" data-station="HD073802">Kalnciems</li>
-            <li class="station-li" data-station="HD073809">Ķīšezers</li>
-            <li class="station-li" data-station="HD073137">Krāslava</li>
-            <li class="station-li" data-station="HD073613">Kuldīga</li>
-            <li class="station-li" data-station="HD073334">Kūlenieki</li>
-            <li class="station-li" data-station="HD073009">Lagaste</li>
-            <li class="station-li" data-station="HD073079">Lejasciems</li>
-            <li class="station-li" data-station="HD073721">Lenderņa</li>
-            <li class="station-li" data-station="HD073400">Lielpeči</li>
-            <li class="station-li" data-station="HD073529">Lielveisi</li>
-            <li class="station-li" data-station="HD073366">Litene</li>
-            <li class="station-li" data-station="HD073345">Lubāna</li>
-            <li class="station-li" data-station="HD072971">Ludza</li>
-            <li class="station-li" data-station="HD073003">Mazsalaca</li>
-            <li class="station-li" data-station="HD073098">Melturi</li>
-            <li class="station-li" data-station="HD073422">Mežotne</li>
-            <li class="station-li" data-station="HD073025">Oleri</li>
-            <li class="station-li" data-station="HD073641">Pakuļu HES</li>
-            <li class="station-li" data-station="HD073135">Piedruja</li>
-            <li class="station-li" data-station="HD073904">Pļaviņas</li>
-            <li class="station-li" data-station="HD073653">Renda</li>
-            <li class="station-li" data-station="HD073580">Rojupe</li>
-            <li class="station-li" data-station="HD073062">Sigulda</li>
-            <li class="station-li" data-station="HD073322">Sīļi</li>
-            <li class="station-li" data-station="HD073803">Sloka</li>
-            <li class="station-li" data-station="HD073424">Staļģene</li>
-            <li class="station-li" data-station="HD073461">Sudrabkalni</li>
-            <li class="station-li" data-station="HD073075">Taurene</li>
-            <li class="station-li" data-station="HD073659">Tērande</li>
-            <li class="station-li" data-station="HD073144">Vaikuļāni</li>
-            <li class="station-li" data-station="HD073605">Vārdava</li>
-            <li class="station-li" data-station="HD073044">Velēna</li>
-            <li class="station-li" data-station="HD073616">Vendzava</li>
-            <li class="station-li" data-station="HD073582">Vičaki</li>
-            <li class="station-li" data-station="HD073411">Zaķi</li>
-            <li class="station-li" data-station="HD073071">Zosēni</li>
-        </ul>
+    <ul class="stations-dropdown">
+        <li class="station-li" data-station="HD073810">Rīga</li>
+        <li class="station-li" data-station="HD073352">Aiviekstes HES</li>
+        <li class="station-li" data-station="HD073552">Baloži</li>
+        <li class="station-li" data-station="HD073482">Bauska</li>
+        <li class="station-li" data-station="HD073548">Bramberģe</li>
+        <li class="station-li" data-station="HD073720">Brūnuļi</li>
+        <li class="station-li" data-station="HD073901">Burtnieki</li>
+        <li class="station-li" data-station="HD073813">Carnikava</li>
+        <li class="station-li" data-station="HD073709">Cīrava</li>
+        <li class="station-li" data-station="HD073682">Dūkupji</li>
+        <li class="station-li" data-station="HD073380">Griškāni</li>
+        <li class="station-li" data-station="HD073151">Jēkabpils</li>
+        <li class="station-li" data-station="HD073801">Jelgava</li>
+        <li class="station-li" data-station="HD073802">Kalnciems</li>
+        <li class="station-li" data-station="HD073809">Ķīšezers</li>
+        <li class="station-li" data-station="HD073137">Krāslava</li>
+        <li class="station-li" data-station="HD073613">Kuldīga</li>
+        <li class="station-li" data-station="HD073334">Kūlenieki</li>
+        <li class="station-li" data-station="HD073009">Lagaste</li>
+        <li class="station-li" data-station="HD073079">Lejasciems</li>
+        <li class="station-li" data-station="HD073721">Lenderņa</li>
+        <li class="station-li" data-station="HD073400">Lielpeči</li>
+        <li class="station-li" data-station="HD073529">Lielveisi</li>
+        <li class="station-li" data-station="HD073366">Litene</li>
+        <li class="station-li" data-station="HD073345">Lubāna</li>
+        <li class="station-li" data-station="HD072971">Ludza</li>
+        <li class="station-li" data-station="HD073003">Mazsalaca</li>
+        <li class="station-li" data-station="HD073098">Melturi</li>
+        <li class="station-li" data-station="HD073422">Mežotne</li>
+        <li class="station-li" data-station="HD073025">Oleri</li>
+        <li class="station-li" data-station="HD073641">Pakuļu HES</li>
+        <li class="station-li" data-station="HD073135">Piedruja</li>
+        <li class="station-li" data-station="HD073904">Pļaviņas</li>
+        <li class="station-li" data-station="HD073653">Renda</li>
+        <li class="station-li" data-station="HD073580">Rojupe</li>
+        <li class="station-li" data-station="HD073062">Sigulda</li>
+        <li class="station-li" data-station="HD073322">Sīļi</li>
+        <li class="station-li" data-station="HD073803">Sloka</li>
+        <li class="station-li" data-station="HD073424">Staļģene</li>
+        <li class="station-li" data-station="HD073461">Sudrabkalni</li>
+        <li class="station-li" data-station="HD073075">Taurene</li>
+        <li class="station-li" data-station="HD073659">Tērande</li>
+        <li class="station-li" data-station="HD073144">Vaikuļāni</li>
+        <li class="station-li" data-station="HD073605">Vārdava</li>
+        <li class="station-li" data-station="HD073044">Velēna</li>
+        <li class="station-li" data-station="HD073616">Vendzava</li>
+        <li class="station-li" data-station="HD073582">Vičaki</li>
+        <li class="station-li" data-station="HD073411">Zaķi</li>
+        <li class="station-li" data-station="HD073071">Zosēni</li>
+    </ul>
 </div>
 
 <!--<button id="fetchDataButton">Find Temperature</button>-->
 <div id="selectedStation" class="selected-station"></div>
 <div id="dataContainer" style="display: none">
-    <div style="position: relative; height:40vh; width:90vw"><canvas id="temperatureChart"></canvas></div>
+    <div style="position: relative; height:40vh; width:90vw">
+        <canvas id="temperatureChart"></canvas>
+    </div>
     <button id="showTableButton">Show Historical Data</button>
 </div>
 <div id="apiDataContainer" style="display: none"></div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="../static/homepage.js"></script>
-
 
 
 </body>

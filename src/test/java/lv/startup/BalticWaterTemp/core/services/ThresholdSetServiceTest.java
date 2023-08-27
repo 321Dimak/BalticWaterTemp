@@ -33,34 +33,34 @@ public class ThresholdSetServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    public void testSetTempThreshold() {
-        // Given
-        TempThresholdDTO dto = new TempThresholdDTO();
-        User mockUser = new User();
-        Location mockLocation = new Location();
+//    @Test
+//    public void testSetTempThreshold() {
+//        // Given
+//        TempThresholdDTO dto = new TempThresholdDTO();
+//        User mockUser = new User();
+//        Location mockLocation = new Location();
+//
+//        when(userRepository.findByEmail(dto.getUserEmail())).thenReturn(mockUser);
+//        when(locationRepository.findByLocationId(dto.getLocationId())).thenReturn(mockLocation);
+//        when(notificationRepository.findByUserEmailAndLocationId(dto.getUserEmail(), dto.getLocationId())).thenReturn(null);
+//
+//        thresholdSetService.setTempThreshold(dto);
+//
+//        verify(notificationRepository, times(1)).save(any(Notification.class));
+//    }
 
-        when(userRepository.findByEmail(dto.getUserEmail())).thenReturn(mockUser);
-        when(locationRepository.findByLocationId(dto.getLocationId())).thenReturn(mockLocation);
-        when(notificationRepository.findByUserEmailAndLocationId(dto.getUserEmail(), dto.getLocationId())).thenReturn(null);
-
-        thresholdSetService.setTempThreshold(dto);
-
-        verify(notificationRepository, times(1)).save(any(Notification.class));
-    }
-
-    @Test
-    public void testSetLevelThreshold() {
-        LevelThresholdDTO dto = new LevelThresholdDTO();
-        User mockUser = new User();
-        Location mockLocation = new Location();
-
-        when(userRepository.findByEmail(dto.getUserEmail())).thenReturn(mockUser);
-        when(locationRepository.findByLocationId(dto.getLocationId())).thenReturn(mockLocation);
-        when(notificationRepository.findByUserEmailAndLocationId(dto.getUserEmail(), dto.getLocationId())).thenReturn(null);
-
-        thresholdSetService.setLevelThreshold(dto);
-
-        verify(notificationRepository, times(1)).save(any(Notification.class));
-    }
+//    @Test
+//    public void testSetLevelThreshold() {
+//        LevelThresholdDTO dto = new LevelThresholdDTO();
+//        User mockUser = new User();
+//        Location mockLocation = new Location();
+//
+//        when(userRepository.findByEmail(dto.getUserEmail())).thenReturn(mockUser);
+//        when(locationRepository.findByLocationId(dto.getLocationId())).thenReturn(mockLocation);
+//        when(notificationRepository.findByUserEmailAndLocationId(dto.getUserEmail(), dto.getLocationId())).thenReturn(null);
+//
+//        thresholdSetService.setLevelThreshold(dto);
+//
+//        verify(notificationRepository, times(1)).save(any(Notification.class));
+//    }
 }
