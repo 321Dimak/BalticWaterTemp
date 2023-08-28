@@ -17,15 +17,11 @@ public class NotificationTest {
     @Test
     public void testSetAndGetUserEmail() {
         String userEmail = "test@example.com";
-        notification.setUserEmail(userEmail);
-        assertEquals(userEmail, notification.getUserEmail());
-    }
-
-    @Test
-    public void testSetAndGetLocationId() {
         String locationId = "location123";
-        notification.setLocationId(locationId);
-        assertEquals(locationId, notification.getLocationId());
+        NotificationKey notificationKey = new NotificationKey(userEmail, locationId);
+        notification.setId(notificationKey);
+        assertEquals(userEmail, notification.getId().getUserEmail());
+        assertEquals(locationId, notification.getId().getLocationId());
     }
 
     @Test

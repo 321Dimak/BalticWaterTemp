@@ -39,6 +39,7 @@ public class SpringSecurity {
                                 .requestMatchers("/favorite-location").permitAll()
                                 .requestMatchers("/save-favorite-location/favorite-location").permitAll()
                                 .requestMatchers("/fetch-api-temp").permitAll()
+                                .requestMatchers("/thresholdSetter").authenticated()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(

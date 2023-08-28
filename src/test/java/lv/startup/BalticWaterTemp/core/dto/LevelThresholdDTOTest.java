@@ -28,13 +28,6 @@ public class LevelThresholdDTOTest {
     }
 
     @Test
-    public void testSetAndGetTemperature() {
-        double temperature = 20.5;
-        levelThresholdDTO.setTemperature(temperature);
-        assertEquals(temperature, levelThresholdDTO.getTemperature());
-    }
-
-    @Test
     public void testSetAndGetLevel() {
         double level = 5.5;
         levelThresholdDTO.setLevel(level);
