@@ -35,6 +35,12 @@ public class SpringSecurity {
                                 .requestMatchers("/user_index").authenticated()
                                 .requestMatchers("/static/**").permitAll()
                                 .requestMatchers("/fetch-api-data").permitAll()
+                                .requestMatchers("/save-favorite-location").permitAll()
+                                .requestMatchers("/favorite-location").permitAll()
+                                .requestMatchers("/save-favorite-location/favorite-location").permitAll()
+                                .requestMatchers("/fetch-api-temp").permitAll()
+                                .requestMatchers("/thresholdSetter").authenticated()
+                                .requestMatchers("/saveFavorite").authenticated()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(
@@ -48,6 +54,7 @@ public class SpringSecurity {
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutSuccessUrl("/login")
                                 .permitAll()
                 );
         return http.build();

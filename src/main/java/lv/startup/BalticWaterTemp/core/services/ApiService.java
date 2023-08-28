@@ -19,4 +19,13 @@ public class ApiService {
         String url = API_BASE_URL + "?sql=" + sqlQuery;
         return restTemplate.getForEntity(url, String.class);
     }
+
+    public ResponseEntity<String> fetchTempFromApi(String station) {
+        String sqlQuery = "SELECT * FROM \"de5f06e9-6f44-497d-8ec2-72a2483608e8\" " +
+                "WHERE \"de5f06e9-6f44-497d-8ec2-72a2483608e8\".\"ABBREVIATION\" = 'WTEMD' " +
+                "AND \"de5f06e9-6f44-497d-8ec2-72a2483608e8\".\"STATION_ID\" = '"+ station +"' ";
+
+        String url = API_BASE_URL + "?sql=" + sqlQuery;
+        return restTemplate.getForEntity(url, String.class);
+    }
 }

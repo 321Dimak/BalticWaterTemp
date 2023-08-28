@@ -51,13 +51,12 @@ public class UserServiceImpl implements UserService {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
             String htmlMsg = "<h3>Welcome " + userDto.getName() + "!</h3><p>Thank you for registering at BalticWaterTemp.</p>";
-            helper.setText(htmlMsg, true);  // set to true to enable HTML formatting
+            helper.setText(htmlMsg, true);
             helper.setTo(userDto.getEmail());
             helper.setSubject("Welcome to BalticWaterTemp");
-            helper.setFrom("balticwatertemperature@gmail.com");  // replace with your sending email
+            helper.setFrom("balticwatertemperature@gmail.com");
             mailSender.send(mimeMessage);
         } catch (Exception e) {
-            // Log the exception for debugging. You might want to handle this differently based on your application's needs.
             e.printStackTrace();
         }
     }

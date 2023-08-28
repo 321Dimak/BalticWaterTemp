@@ -166,7 +166,9 @@
 <div class="buttons-container">
     <span th:if="${loggedInUser}">
         Welcome, <span th:text="${loggedInUser}"></span>!
-         <a href="/logout" class="create-account-link">Logout</a>
+        <a href="/logout" class="create-account-link">Logout</a> <br>
+        <a href="/thresholdSetter">Set Threshold Notifications</a> <br>
+        <a href="/saveFavorite">Add Favorite Location</a> <br>
         <div>
             Your Favorite Locations:
             <ul>
@@ -184,17 +186,18 @@
 
 
 <div class="inputs">
-<div class="input-label">
-    <label for="fromDate">From:</label>
-    <input type="date" id="fromDate" class="date-input" placeholder="From Date">
-</div>
+    <div class="input-label">
+        <label for="fromDate">From:</label>
+        <input type="date" id="fromDate" class="date-input" placeholder="From Date">
+    </div>
 
-<div class="input-label">
-    <label for="toDate">To:</label>
-    <input type="date" id="toDate" class="date-input" placeholder="To Date">
-</div>
-<div  class="input-label" id="stationsDropdown">
-    <button class="station-button">Select Station</button>
+    <div class="input-label">
+        <label for="toDate">To:</label>
+        <input type="date" id="toDate" class="date-input" placeholder="To Date">
+    </div>
+    <div class="input-label" id="stationsDropdown">
+        <button class="station-button">Select Station</button>
+    </div>
 </div>
     <div class="stations-list">
         <ul class="stations-dropdown">
@@ -253,16 +256,19 @@
         </ul>
     </div>
 
-    <!--<button id="fetchDataButton">Find Temperature</button>-->
-    <div id="selectedStation" class="selected-station"></div>
-    <div id="dataContainer" style="display: none">
-        <div style="position: relative; height:40vh; width:90vw"><canvas id="temperatureChart"></canvas></div>
-        <button id="showTableButton">Show Historical Data</button>
+<!--<button id="fetchDataButton">Find Temperature</button>-->
+<div id="selectedStation" class="selected-station"></div>
+<div id="dataContainer" style="display: none">
+    <div style="position: relative; height:40vh; width:90vw">
+        <canvas id="temperatureChart"></canvas>
     </div>
-    <div id="apiDataContainer" style="display: none"></div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <button id="showTableButton">Show Historical Data</button>
+</div>
+<div id="apiDataContainer" style="display: none"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="../static/homepage.js"></script>
+<script src="../static/homepage.js"></script>
+
 
 </body>
 </html>

@@ -96,7 +96,7 @@ function createTemperatureChart(dates, temperatures) {
         data: {
             labels: dates,
             datasets: [{
-                label: 'Temperature (°C)',
+                label: 'Temperature (Â°C)',
                 data: temperatures,
                 borderColor: '#6a1b9a',
                 fill: false
@@ -216,3 +216,8 @@ function saveFavoriteLocation(locationId) {
         });
 
 }
+
+
+
+
+
