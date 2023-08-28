@@ -14,11 +14,8 @@ import lombok.Setter;
 @Table(name = "notification")
 public class Notification {
 
-    @Id
-    @Column(name = "user_email")
-    private String userEmail;
-    @Column(name = "location_id")
-    private String locationId;
+    @EmbeddedId
+    private NotificationKey id;
     @Column(name = "temperature")
     private double temperature;
     @Column(name = "t_lower_alert")
@@ -33,18 +30,28 @@ public class Notification {
     private boolean levelHigherAlert;
 
     @ManyToOne
-    @JoinColumn(name = "user_email", referencedColumnName = "email", insertable = false, updatable = false)
+    @MapsId("userEmail")
+    @JoinColumn(name = "user_email")
     private User user;
+
     @ManyToOne
-    @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @MapsId("locationId")
+    @JoinColumn(name = "location_id")
     private Location location;
 
-    public Notification(String userEmail, String locationId, double temperature, double level, User user, Location location) {
-        this.userEmail = userEmail;
-        this.locationId = locationId;
+    public Notification(NotificationKey id, double temperature, double level, User user, Location location) {
+        this.id = id;
         this.temperature = temperature;
         this.level = level;
         this.user = user;
         this.location = location;
+        this.tempLowerAlert = false;
+        this.tempHigherAlert = false;
+        this.levelLowerAlert = false;
+        this.levelHigherAlert = false;
+    }
+
+    public Notification(NotificationKey id) {
+        this.id = id;
     }
 }
