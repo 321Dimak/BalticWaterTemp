@@ -224,3 +224,15 @@ label {
 .stations-list li:hover {
     background-color: #f2f2f2;
 }
+.favspan, .favspana {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    cursor: grab;
+}
+.favspana:hover, .favspan:hover {
+    background-color: white;
+}
+.favorite-location {
+    list-style: none;
+}

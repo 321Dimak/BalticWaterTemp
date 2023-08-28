@@ -71,11 +71,12 @@ function fetchApiData(selectedStation, selectedStationName) {
                 dates.push(formatDate(record.DATETIME, 'display'));
                 temperatures.push(parseFloat(record.VALUE));
             });
-
+            const lastTemperature = temperatures[temperatures.length - 1];
+            console.log(lastTemperature);
             displayApiData(data, selectedStationName);
             createTemperatureChart(dates, temperatures);
             const selectedStationElement = document.getElementById('selectedStation');
-            selectedStationElement.textContent = `Selected Station: ${selectedStationName}`;
+            selectedStationElement.textContent = `Selected Station: ${selectedStationName} (${lastTemperature}°C)` ;
             const dataContainer = document.getElementById('dataContainer');
             dataContainer.style.display = 'block';
         })
@@ -186,16 +187,21 @@ function displayApiData(data, selectedStationName) {
     showTableButton.style.display = 'block';
 }
 document.addEventListener("DOMContentLoaded", function () {
-    const saveButtons = document.querySelectorAll(".save-favorite-button");
+    const fav = document.querySelectorAll(".favorite-location");
+    fav.forEach(item => {
+        const nameButton = item.querySelector(".favspan");
+        const idButton = item.querySelector(".favspana");
 
-    saveButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const locationId = button.getAttribute("data-location-id");
-            console.log(locationId);
+        const locationName = nameButton.textContent;
+        const locationId = idButton.textContent;
 
-            saveFavoriteLocation(locationId);
+
+        item.addEventListener("click", function () {
+
+            fetchApiData(locationId, locationName);
         });
     });
+
 });
 
 function saveFavoriteLocation(locationId) {
@@ -216,8 +222,6 @@ function saveFavoriteLocation(locationId) {
         });
 
 }
-
-
 
 
 
