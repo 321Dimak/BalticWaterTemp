@@ -5,8 +5,31 @@
     <meta name="description" content="">
     <meta name="developer" content="Dmitrijs Kozlovs">
     <title></title>
+    <style>
+        body, h3, a, button, div {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        /* Other CSS styles you provided... */
+
+        /* Add inline styles for your existing classes and IDs */
+        h3.title-heading {
+            font-size: 28px;
+            color: #6a1b9a;
+            margin-bottom: 20px;
+        }
+
+        .buttons-container {
+            display: flex;
+            align-self: flex-end;
+            margin-top: -30px;
+        }
+
+    </style>
 </head>
-<body>
+<body style="font-family: Arial, sans-serif; background-color: white; color: #333; line-height: 1.6; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh;">
 
 <h3>Add Favorite Location</h3>
 
@@ -67,12 +90,12 @@
                 <option value="HD073982">Usmas lake</option>
                 <option value="HD073972">Kaunata, Rāznas lake</option>
             </select>
-            <td><input type="submit" value="Add To Favorite"/></td>
+            <td><input type="submit" value="Add To Favorite" style="margin-top: 10px; padding: 8px 15px; background-color: #007bff; color: white; border: none; cursor: pointer;"/></td>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         </form>
     </tr>
-    <p th:text="${message}"></p>
+    <p th:text="${message}" style="margin-top: 20px;"></p>
 </table>
-<a href="/">To home page</a>
+<a href="/" style="margin-top: 20px; background-color: #6a1b9a; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; text-align: center; text-decoration: none; border-radius: 5px; transition: background-color 0.3s, color 0.3s;">To home page</a>
 </body>
 </html>
